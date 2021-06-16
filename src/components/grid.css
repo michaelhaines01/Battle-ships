@@ -1,0 +1,23 @@
+.board-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 2fr);
+  border: 6px solid darkslategrey;
+  cursor: pointer;
+}
+.grid-square {
+  position: relative;
+  box-shadow: 0 0 9px #67ff9a;
+  border: 1px solid #0ffd5e;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.1rem;
+  background-color: white;
+}
