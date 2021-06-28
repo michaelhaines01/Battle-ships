@@ -1,6 +1,8 @@
 import Ship from "./ships.js";
-
+import Player from "./player.js";
 const Gameboard = () => {
+  /// Initialize in player
+
   const ships = {
     carrier: Ship("carrier", [
       [0, 1],
@@ -30,7 +32,7 @@ const Gameboard = () => {
       [6, 0],
     ]),
   };
-
+  //this array in array must change again
   const shipnames = Object.keys(ships);
 
   const boardobject = {
@@ -45,7 +47,8 @@ const Gameboard = () => {
       .map(() => Array(10).fill(boardobject));
   };
   let board = createboard();
-
+  // this is what translates to ship storage
+  //Just change this then change formatt
   const placeships = () => {
     for (let i = 0; i < shipnames.length; i++) {
       ships[shipnames[i]].shipcords.map(
@@ -59,7 +62,13 @@ const Gameboard = () => {
     }
     return board;
   };
-
+  const tester = (theships) => {
+    const first = theships[0].cords[0];
+    const second = theships[0].cords[0];
+    const third = theships[0].cords[0];
+    const fourth = theships[0].cords[0];
+    const fifth = theships[0].cords[0];
+  };
   const receiveattack = (x, y) => {
     if (board[x][y].ship === true && board[x][y].hit !== true) {
       //this should be the ship name and call ship hit
@@ -97,7 +106,16 @@ const Gameboard = () => {
     return display;
   };
 
-  return { board, placeships, display, ships, receiveattack, allshipssunk };
+  return {
+    tester,
+    board,
+    placeships,
+    display,
+    ships,
+    receiveattack,
+    allshipssunk,
+    createboard,
+  };
 };
 
 export default Gameboard;

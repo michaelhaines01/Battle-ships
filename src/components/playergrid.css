@@ -1,0 +1,16 @@
+.grid-container {
+  display: flex;
+  margin: auto;
+  height: 500px;
+  width: 500px;
+  background-color: #d3d3d3;
+}
+
+#grid {
+  margin: auto;
+  height: 450px;
+  width: 450px;
+  display: grid;
+  grid-template-columns: repeat(10), minmax(1px, auto) [col-start];
+  grid-template-rows: repeat(10), minmax(1px, auto) [col-start];
+}

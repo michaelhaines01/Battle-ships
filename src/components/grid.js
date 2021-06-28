@@ -1,10 +1,16 @@
-import Gameboard from "../factories/gameboard.js";
 import "./grid.css";
-import React, { useState } from "react";
+import React from "react";
+import Draggable from "react-draggable";
 
 const Grid = (props) => {
   const human = props.players.player.getboard();
   const ai = props.players.player.getaiboard();
+
+  const onDragStart = (event) => {
+    //Key doesnt work
+    //value does
+    console.log(event.currentTarget.getAttribute("value"));
+  };
 
   return (
     <div className="board-container">
@@ -70,10 +76,20 @@ const Grid = (props) => {
       </div>
 
       <div className="game-board" id="ai">
-        {human.board.map((nested) =>
-          nested.map((cell) => {
+        {human.board.map((nested, row) =>
+          nested.map((cell, key) => {
             if (cell.ship === true && cell.hit === false)
-              return <div className="grid-square">S</div>;
+              return (
+                <div
+                  className="grid-square"
+                  draggable="true"
+                  onDragStart={onDragStart}
+                  key={key}
+                  value={row}
+                >
+                  S
+                </div>
+              );
             else if (cell.ship === true && cell.hit === true)
               return <div className="grid-square">H</div>;
             return <div className="grid-square">{cell.display}</div>;

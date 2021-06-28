@@ -1,7 +1,7 @@
-import Player from "../factories/player";
 import Grid from "../components/grid.js";
 import React, { useState } from "react";
 import Gameover from "../components/gameover.js";
+import Placeships from "../components/playerboard.js";
 
 const Gamecontroller = (props) => {
   //initialize player maybe send it as props
@@ -9,7 +9,9 @@ const Gamecontroller = (props) => {
   const [turn, setturn] = useState(0);
   const [gameover, setgameover] = useState(false);
   //this is too deep
-  players.player.getboard().placeships();
+  console.log(players.theships);
+  players.player.getboard();
+  //players.player.getboard().placeships();
   players.player.getaiboard().placeships();
 
   const restart = () => {
@@ -33,7 +35,7 @@ const Gamecontroller = (props) => {
 
   return (
     <div>
-      {<Grid players={players} testclick={testclick} />}
+      {!gameover && <Grid players={players} testclick={testclick} />}
       {gameover && <Gameover restart={restart} />}
     </div>
   );

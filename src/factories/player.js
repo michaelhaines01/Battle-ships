@@ -1,6 +1,8 @@
 import Gameboard from "./gameboard.js";
 
-const Player = () => {
+const Player = (ships) => {
+  const theships = ships;
+  console.log(theships);
   const playerfactory = (name, board, aiboard) => {
     const getname = () => name;
     const getboard = () => board;
@@ -33,6 +35,6 @@ const Player = () => {
     }
   };
 
-  return { aiattack, player, aiboard };
+  return { aiattack, player, aiboard, theships };
 };
 export default Player;
