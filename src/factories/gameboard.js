@@ -2,35 +2,13 @@ import Ship from "./ships.js";
 import Player from "./player.js";
 const Gameboard = () => {
   /// Initialize in player
-
+  //this is obsolete
   const ships = {
-    carrier: Ship("carrier", [
-      [0, 1],
-      [0, 2],
-      [0, 3],
-      [0, 4],
-      [0, 5],
-    ]),
-    battleship: Ship("battleship", [
-      [0, 6],
-      [0, 7],
-      [0, 8],
-      [0, 9],
-    ]),
-    destroyer: Ship("destroyer", [
-      [1, 1],
-      [1, 2],
-      [1, 3],
-    ]),
-    submarine: Ship("submarine", [
-      [2, 0],
-      [3, 0],
-      [4, 0],
-    ]),
-    patrolboat: Ship("patrolboat", [
-      [5, 0],
-      [6, 0],
-    ]),
+    carrier: Ship("carrier", 5),
+    battleship: Ship("battleship", 4),
+    destroyer: Ship("destroyer", 3),
+    submarine: Ship("submarine", 3),
+    patrolboat: Ship("patrolboat", 2),
   };
   //this array in array must change again
   const shipnames = Object.keys(ships);
@@ -49,7 +27,7 @@ const Gameboard = () => {
   let board = createboard();
   // this is what translates to ship storage
   //Just change this then change formatt
-  const placeships = () => {
+  /*const placeships = () => {
     for (let i = 0; i < shipnames.length; i++) {
       ships[shipnames[i]].shipcords.map(
         ([a, b]) =>
@@ -61,14 +39,8 @@ const Gameboard = () => {
       );
     }
     return board;
-  };
-  const tester = (theships) => {
-    const first = theships[0].cords[0];
-    const second = theships[0].cords[0];
-    const third = theships[0].cords[0];
-    const fourth = theships[0].cords[0];
-    const fifth = theships[0].cords[0];
-  };
+  };*/
+
   const receiveattack = (x, y) => {
     if (board[x][y].ship === true && board[x][y].hit !== true) {
       //this should be the ship name and call ship hit
@@ -76,10 +48,7 @@ const Gameboard = () => {
       //updates board
       board[x][y] = { ...board[x][y], hit: true, display: "X" };
       return true;
-    }
-
-    //this is new
-    else if (board[x][y].hit !== true) {
+    } else if (board[x][y].hit !== true) {
       board[x][y] = { ...board[x][y], hit: true, display: "X" };
       return false;
     }
@@ -107,9 +76,8 @@ const Gameboard = () => {
   };
 
   return {
-    tester,
     board,
-    placeships,
+
     display,
     ships,
     receiveattack,

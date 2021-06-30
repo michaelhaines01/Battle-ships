@@ -12,7 +12,7 @@ const Gamecontroller = (props) => {
   console.log(players.theships);
   players.player.getboard();
   //players.player.getboard().placeships();
-  players.player.getaiboard().placeships();
+  //players.player.getaiboard().placeships();
 
   const restart = () => {
     props.setrestart(true);

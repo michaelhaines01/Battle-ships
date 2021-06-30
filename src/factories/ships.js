@@ -9,7 +9,7 @@ const Ship = (name, cords) => {
   };
 
   const shipsunk = () => {
-    if (shipcords.length == hitsarray.length) {
+    if (shipcords == hitsarray.length) {
       return true;
     }
     return false;
