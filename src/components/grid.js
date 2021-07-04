@@ -3,19 +3,14 @@ import React from "react";
 import Draggable from "react-draggable";
 
 const Grid = (props) => {
-  const human = props.players.player.getboard();
-  const ai = props.players.player.getaiboard();
-
-  const onDragStart = (event) => {
-    //Key doesnt work
-    //value does
-    console.log(event.currentTarget.getAttribute("value"));
-  };
+  console.log(props.playerboard);
+  const human = props.playerboard;
+  const ai = props.aiboard;
 
   return (
     <div className="board-container">
       <div className="game-board" id="human">
-        {ai.board.map((nested, row) =>
+        {ai.map((nested, row) =>
           nested.map((cell, key) => {
             if (cell.ship === true && cell.hit === false)
               return (
@@ -76,14 +71,13 @@ const Grid = (props) => {
       </div>
 
       <div className="game-board" id="ai">
-        {human.board.map((nested, row) =>
+        {human.map((nested, row) =>
           nested.map((cell, key) => {
             if (cell.ship === true && cell.hit === false)
               return (
                 <div
                   className="grid-square"
                   draggable="true"
-                  onDragStart={onDragStart}
                   key={key}
                   value={row}
                 >

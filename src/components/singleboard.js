@@ -1,7 +1,11 @@
 const Singleboard = (props) => {
   const board = props.board;
   const setplace = props.setplace;
+  const setcord = props.setcord;
 
+  const handleclick = () => {
+    setcord();
+  };
   return (
     <div>
       <div className="board-container">
@@ -25,7 +29,7 @@ const Singleboard = (props) => {
         </div>
       </div>
       <div>
-        <button onClick={() => setplace((c) => c + 1)}>Random ships</button>
+        <button onClick={() => handleclick()}>Random ships</button>
       </div>
     </div>
   );

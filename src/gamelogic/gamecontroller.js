@@ -6,6 +6,8 @@ import Placeships from "../components/playerboard.js";
 const Gamecontroller = (props) => {
   //initialize player maybe send it as props
   let players = props.players;
+  let playerboard = props.playerboard;
+  let aiboard = props.aiboard;
   const [turn, setturn] = useState(0);
   const [gameover, setgameover] = useState(false);
   //this is too deep
@@ -35,7 +37,14 @@ const Gamecontroller = (props) => {
 
   return (
     <div>
-      {!gameover && <Grid players={players} testclick={testclick} />}
+      {!gameover && (
+        <Grid
+          players={players}
+          testclick={testclick}
+          playerboard={playerboard}
+          aiboard={aiboard}
+        />
+      )}
       {gameover && <Gameover restart={restart} />}
     </div>
   );

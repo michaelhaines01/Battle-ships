@@ -41,7 +41,7 @@ const Gameboard = () => {
     return board;
   };*/
 
-  const receiveattack = (x, y) => {
+  const receiveattack = (x, y, board) => {
     if (board[x][y].ship === true && board[x][y].hit !== true) {
       //this should be the ship name and call ship hit
       ships[board[x][y].display].hit(x, y);

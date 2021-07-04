@@ -35,7 +35,9 @@ const Placeships = (props) => {
   let players = Player(theships);
   //this is ridculous
   let board = players.player.getboard().board;
-  const [place, setplace] = useState(0);
+  const [playerboard, setplayerboard] = useState(board);
+  const [aiboard, setaiboard] = useState(board);
+
   const [start, setstart] = useState(false);
 
   let randomnumber = () => {
@@ -88,13 +90,14 @@ const Placeships = (props) => {
       ship.cords.push(newcord);
       placeships(ship);
     });
+    setplayerboard([...board]);
+    setaiboard([...board]);
+    return;
   };
-  setcord();
-  console.log(board);
 
   return (
     <div>
-      {!start && <Singleboard setplace={setplace} board={board} />}
+      {!start && <Singleboard board={playerboard} setcord={setcord} />}
 
       <div>
         {start && (
@@ -102,6 +105,8 @@ const Placeships = (props) => {
             setrestart={props.setrestart}
             players={players}
             theships={theships}
+            playerboard={playerboard}
+            aiboard={aiboard}
           />
         )}
         <button onClick={() => setstart(true)}>Start game</button>
