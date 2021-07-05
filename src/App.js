@@ -4,20 +4,15 @@ import Gamecontroller from "./gamelogic/gamecontroller.js";
 import Placeships from "./components/playerboard.js";
 import React, { useState } from "react";
 import Player from "./factories/player";
-
+import Gameboard from "./factories/gameboard.js";
 function App() {
-  //all this does is restart the whole app
-
-  //const [restart, setrestart] = useState(false);
-  //this initializes the player
-  // call this after placeing of ships?
-
-  //let players = Player();
   //<Gamecontroller setrestart={setrestart} players={players} />
-
+  const [gameover, setgameover] = useState(false);
+  const player = Gameboard();
+  const ai = Gameboard();
   return (
     <div>
-      <Placeships />
+      <Placeships player={player} ai={ai} setgameover={setgameover} />
     </div>
   );
 }

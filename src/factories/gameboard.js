@@ -1,8 +1,8 @@
 import Ship from "./ships.js";
-import Player from "./player.js";
+
 const Gameboard = () => {
   /// Initialize in player
-  //this is obsolete
+
   const ships = {
     carrier: Ship("carrier", 5),
     battleship: Ship("battleship", 4),
@@ -13,33 +13,22 @@ const Gameboard = () => {
   //this array in array must change again
   const shipnames = Object.keys(ships);
 
-  const boardobject = {
-    ship: false,
-    hit: false,
-    display: "~",
-  };
-
   const createboard = () => {
+    const boardobject = {
+      ship: false,
+      hit: false,
+      display: "~",
+    };
     return Array(10)
       .fill(boardobject)
       .map(() => Array(10).fill(boardobject));
   };
-  let board = createboard();
-  // this is what translates to ship storage
-  //Just change this then change formatt
-  /*const placeships = () => {
-    for (let i = 0; i < shipnames.length; i++) {
-      ships[shipnames[i]].shipcords.map(
-        ([a, b]) =>
-          (board[a][b] = {
-            ...board[a][b],
-            ship: true,
-            display: shipnames[i],
-          })
-      );
-    }
-    return board;
-  };*/
+
+  let randomnumber = () => {
+    const min = 0;
+    const max = 9;
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
 
   const receiveattack = (x, y, gameboard) => {
     if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
@@ -56,6 +45,23 @@ const Gameboard = () => {
     return gameboard;
   };
 
+  //this is shit
+  let aiattack = (gameboard) => {
+    let aishot = false;
+    let x = randomnumber();
+    let y = randomnumber();
+    while (aishot === false) {
+      if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
+        gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
+        aishot = true;
+      } else if (gameboard[x][y].hit !== true) {
+        gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
+        aishot = true;
+      }
+      return gameboard;
+    }
+  };
+
   const allshipssunk = () => {
     for (let i = 0; i < shipnames.length; i++) {
       if (ships[shipnames[i]].shipsunk() !== true) {
@@ -65,25 +71,7 @@ const Gameboard = () => {
     return true;
   };
 
-  const display = () => {
-    let display = [];
-    for (let i = 0; i < board.length; i++) {
-      for (let y = 0; y < board.length; y++) {
-        display.push(board[i][y].display);
-      }
-    }
-    return display;
-  };
-
-  return {
-    board,
-
-    display,
-    ships,
-    receiveattack,
-    allshipssunk,
-    createboard,
-  };
+  return { aiattack, ships, receiveattack, allshipssunk, createboard };
 };
 
 export default Gameboard;

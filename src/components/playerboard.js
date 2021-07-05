@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Player from "../factories/player";
 import Gamecontroller from "../gamelogic/gamecontroller.js";
 import Singleboard from "../components/singleboard.js";
+import Gameboard from "../factories/gameboard.js";
 
 const Placeships = (props) => {
   let theships = [
@@ -27,20 +28,20 @@ const Placeships = (props) => {
       cords: [],
     },
     {
-      ship: "partrolboat",
+      ship: "patrolboat",
       long: 2,
       cords: [],
     },
   ];
-  let players = Player(theships);
-  //this is ridculous
-  let board = players.player.getboard().board;
-  let boardai = players.player.getaiboard().board;
-  const [playerboard, setplayerboard] = useState(board);
-  const [aiboard, setaiboard] = useState(boardai);
+
+  //get blank board
+  let blankboard = Gameboard().createboard();
+
+  const [playerboard, setplayerboard] = useState(blankboard);
+  const [aiboard, setaiboard] = useState(blankboard);
 
   const [start, setstart] = useState(false);
-  console.log("back here");
+
   let randomnumber = () => {
     const min = 0;
     const max = 9;
@@ -50,29 +51,31 @@ const Placeships = (props) => {
   const checkvalid = (newcord) => {
     let truthy = true;
     newcord.map(([a, b]) => {
-      if (board[a][b] === undefined || board[a][b].ship === true) {
+      if (blankboard[a][b] === undefined || blankboard[a][b].ship === true) {
         return (truthy = false);
       }
     });
     return truthy;
   };
 
-  const placeships = (ship) => {
+  const placeships = (ship, blankboard) => {
     for (let i = 0; i < ship.cords[0].length; i++) {
       //work out whats going on here
       let x = ship.cords[0][i][0];
       let y = ship.cords[0][i][1];
-      board[x][y] = {
-        ...board[x][y],
+      blankboard[x][y] = {
+        ...blankboard[x][y],
         ship: true,
         display: ship.ship,
       };
     }
 
-    return board;
+    return blankboard;
   };
 
   const setcord = () => {
+    let blankboard = Gameboard().createboard();
+
     theships.forEach((ship) => {
       let startcord = randomnumber();
       let y = randomnumber();
@@ -90,11 +93,14 @@ const Placeships = (props) => {
         }
       }
       ship.cords.push(newcord);
-      placeships(ship);
+      placeships(ship, blankboard);
     });
-    setplayerboard([...board]);
-    setaiboard([...board]);
-    return;
+    return blankboard;
+  };
+
+  const handleclick = () => {
+    setplayerboard([...setcord()]);
+    setaiboard([...setcord()]);
   };
 
   return (
@@ -104,16 +110,18 @@ const Placeships = (props) => {
       <div>
         {start && (
           <Gamecontroller
-            setrestart={props.setrestart}
-            players={players}
-            theships={theships}
             playerboard={playerboard}
-            setplayerboard={setplayerboard}
             aiboard={aiboard}
-            setaiboard={setaiboard}
+            player={props.player}
+            ai={props.ai}
+            setstart={setstart}
+            setgameover={props.setgameover}
           />
         )}
         <button onClick={() => setstart(true)}>Start game</button>
+        <div>
+          <button onClick={() => handleclick()}>Random ships</button>
+        </div>
       </div>
     </div>
   );

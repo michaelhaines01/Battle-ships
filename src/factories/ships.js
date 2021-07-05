@@ -5,6 +5,7 @@ const Ship = (name, cords) => {
 
   const hit = (shot) => {
     hitsarray.push(shot);
+    console.log("here");
     return hitsarray;
   };
 
