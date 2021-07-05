@@ -41,19 +41,19 @@ const Gameboard = () => {
     return board;
   };*/
 
-  const receiveattack = (x, y, board) => {
-    if (board[x][y].ship === true && board[x][y].hit !== true) {
+  const receiveattack = (x, y, gameboard) => {
+    if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
       //this should be the ship name and call ship hit
-      ships[board[x][y].display].hit(x, y);
+      ships[gameboard[x][y].display].hit(x);
       //updates board
-      board[x][y] = { ...board[x][y], hit: true, display: "X" };
-      return true;
-    } else if (board[x][y].hit !== true) {
-      board[x][y] = { ...board[x][y], hit: true, display: "X" };
-      return false;
+      gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
+      return gameboard;
+    } else if (gameboard[x][y].hit !== true) {
+      gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
+      return gameboard;
     }
 
-    return false;
+    return gameboard;
   };
 
   const allshipssunk = () => {

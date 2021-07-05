@@ -3,7 +3,6 @@ import React from "react";
 import Draggable from "react-draggable";
 
 const Grid = (props) => {
-  console.log(props.playerboard);
   const human = props.playerboard;
   const ai = props.aiboard;
 
@@ -19,7 +18,6 @@ const Grid = (props) => {
                   key={key}
                   value={row}
                   onClick={(e) => {
-                    console.log(e);
                     props.testclick(key, row);
                   }}
                 >
@@ -33,7 +31,6 @@ const Grid = (props) => {
                   key={key}
                   value={row}
                   onClick={(e) => {
-                    console.log(e);
                     console.log("already hit bruh");
                   }}
                 >
@@ -47,7 +44,6 @@ const Grid = (props) => {
                   key={key}
                   value={row}
                   onClick={(e) => {
-                    console.log(e);
                     props.testclick(key, row);
                   }}
                 >

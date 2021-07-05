@@ -1,20 +1,16 @@
-import Grid from "../components/grid.js";
 import React, { useState } from "react";
+import Grid from "../components/grid.js";
 import Gameover from "../components/gameover.js";
-import Placeships from "../components/playerboard.js";
+import Gameboard from "../factories/gameboard.js";
 
 const Gamecontroller = (props) => {
   //initialize player maybe send it as props
-  let players = props.players;
-  let playerboard = props.playerboard;
-  let aiboard = props.aiboard;
-  const [turn, setturn] = useState(0);
+
+  let startplayerboard = props.playerboard;
+  let startaiboard = props.aiboard;
+  const [aiboard, setaiboard] = useState(startaiboard);
+  const [playerboard, setplayerboard] = useState(startplayerboard);
   const [gameover, setgameover] = useState(false);
-  //this is too deep
-  console.log(players.theships);
-  players.player.getboard();
-  //players.player.getboard().placeships();
-  //players.player.getaiboard().placeships();
 
   const restart = () => {
     props.setrestart(true);
@@ -22,24 +18,34 @@ const Gamecontroller = (props) => {
   };
 
   const testclick = (key, row) => {
-    //everytime it increments it adds to the game count
-    setturn((prevCount) => prevCount + 1);
-
-    if (players.player.getaiboard().receiveattack(row, key) == true) {
-      // check if game over if not return
-      setgameover(players.player.getboard().allshipssunk());
-    } else if (players.aiattack() === true) {
-      setgameover(players.player.getaiboard().allshipssunk());
-      players.aiattack();
-    }
-    setgameover(players.player.getaiboard().allshipssunk());
+    let updatedboard = Gameboard().receiveattack(row, key, aiboard);
+    setaiboard([...updatedboard]);
+    return;
   };
 
+  let randomnumber = () => {
+    const min = 0;
+    const max = 9;
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+  //this is shit
+  /*(let aiattack = () => {
+    let aishot = false;
+    let x = randomnumber();
+    let y = randomnumber();
+    while (aishot === false) {
+      if (player.getboard().receiveattack(x, y) !== false) {
+        aishot = true;
+        return aishot;
+      }
+      return false;
+    }
+  };
+*/
   return (
     <div>
       {!gameover && (
         <Grid
-          players={players}
           testclick={testclick}
           playerboard={playerboard}
           aiboard={aiboard}

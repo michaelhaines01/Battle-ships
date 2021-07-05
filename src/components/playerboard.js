@@ -35,16 +35,18 @@ const Placeships = (props) => {
   let players = Player(theships);
   //this is ridculous
   let board = players.player.getboard().board;
+  let boardai = players.player.getaiboard().board;
   const [playerboard, setplayerboard] = useState(board);
-  const [aiboard, setaiboard] = useState(board);
+  const [aiboard, setaiboard] = useState(boardai);
 
   const [start, setstart] = useState(false);
-
+  console.log("back here");
   let randomnumber = () => {
     const min = 0;
     const max = 9;
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
+
   const checkvalid = (newcord) => {
     let truthy = true;
     newcord.map(([a, b]) => {
@@ -106,7 +108,9 @@ const Placeships = (props) => {
             players={players}
             theships={theships}
             playerboard={playerboard}
+            setplayerboard={setplayerboard}
             aiboard={aiboard}
+            setaiboard={setaiboard}
           />
         )}
         <button onClick={() => setstart(true)}>Start game</button>
