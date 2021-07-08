@@ -1,6 +1,5 @@
 import "./grid.css";
 import React from "react";
-import Draggable from "react-draggable";
 
 const Grid = (props) => {
   const human = props.playerboard;
@@ -17,20 +16,18 @@ const Grid = (props) => {
                   className="grid-square"
                   key={key}
                   value={row}
-                  onClick={(e) => {
+                  onClick={() => {
                     props.testclick(key, row);
                   }}
-                >
-                  ~
-                </div>
+                ></div>
               );
-            else if (cell.hit == true && cell.ship == false)
+            else if (cell.hit === true && cell.ship === false)
               return (
                 <div
-                  className="grid-square"
+                  className="hit-square"
                   key={key}
                   value={row}
-                  onClick={(e) => {
+                  onClick={() => {
                     console.log("already hit bruh");
                   }}
                 >
@@ -40,15 +37,13 @@ const Grid = (props) => {
             else if (cell.hit === true && cell.ship === true)
               return (
                 <div
-                  className="grid-square"
+                  className="shiphit-square"
                   key={key}
                   value={row}
-                  onClick={(e) => {
-                    props.testclick(key, row);
+                  onClick={() => {
+                    console.log("already hit");
                   }}
-                >
-                  S
-                </div>
+                ></div>
               );
             return (
               <div
@@ -58,9 +53,7 @@ const Grid = (props) => {
                 onClick={() => {
                   props.testclick(key, row);
                 }}
-              >
-                ~
-              </div>
+              ></div>
             );
           })
         )}
@@ -70,19 +63,10 @@ const Grid = (props) => {
         {human.map((nested, row) =>
           nested.map((cell, key) => {
             if (cell.ship === true && cell.hit === false)
-              return (
-                <div
-                  className="grid-square"
-                  draggable="true"
-                  key={key}
-                  value={row}
-                >
-                  S
-                </div>
-              );
+              return <div className="ship-square" key={key} value={row}></div>;
             else if (cell.ship === true && cell.hit === true)
-              return <div className="grid-square">H</div>;
-            return <div className="grid-square">{cell.display}</div>;
+              return <div className="shiphit-square"></div>;
+            return <div className="hit-square">{cell.display}</div>;
           })
         )}
       </div>

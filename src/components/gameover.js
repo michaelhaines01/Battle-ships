@@ -5,8 +5,10 @@ const Gameover = (props) => {
   return (
     <div>
       <div>
+        <h1>{props.winner}</h1>
         <h2>Gameover</h2>
-        <button onClick={() => props.restart()}> Restart</button>
+
+        <button onClick={() => props.setgameover(false)}> Restart</button>
       </div>
     </div>
   );

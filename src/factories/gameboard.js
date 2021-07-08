@@ -1,7 +1,7 @@
 import Ship from "./ships.js";
 
 const Gameboard = () => {
-  /// Initialize in player
+  //maybe looks at this
 
   const ships = {
     carrier: Ship("carrier", 5),
@@ -10,7 +10,7 @@ const Gameboard = () => {
     submarine: Ship("submarine", 3),
     patrolboat: Ship("patrolboat", 2),
   };
-  //this array in array must change again
+
   const shipnames = Object.keys(ships);
 
   const createboard = () => {
@@ -31,35 +31,43 @@ const Gameboard = () => {
   };
 
   const receiveattack = (x, y, gameboard) => {
+    let hit = true;
     if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
       //this should be the ship name and call ship hit
       ships[gameboard[x][y].display].hit(x);
-      //updates board
       gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
-      return gameboard;
-    } else if (gameboard[x][y].hit !== true) {
+      return { gameboard, hit };
+    } else {
       gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
-      return gameboard;
+      hit = false;
+      return { gameboard, hit };
     }
-
-    return gameboard;
   };
 
-  //this is shit
   let aiattack = (gameboard) => {
     let aishot = false;
+    let hit = true;
     let x = randomnumber();
     let y = randomnumber();
     while (aishot === false) {
       if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
+        ships[gameboard[x][y].display].hit(x);
         gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
-        aishot = true;
-      } else if (gameboard[x][y].hit !== true) {
+        y = y + 1;
+        continue;
+      } else if (gameboard[x][y].ship === undefined) {
+        y = randomnumber();
+        continue;
+      } // needs to know if undefined
+      //needs to know if the spot has already been hit
+      else if (gameboard[x][y].hit !== true) {
         gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
         aishot = true;
       }
-      return gameboard;
+      x = randomnumber();
+      y = randomnumber();
     }
+    return gameboard;
   };
 
   const allshipssunk = () => {

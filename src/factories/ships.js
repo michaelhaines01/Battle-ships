@@ -5,12 +5,12 @@ const Ship = (name, cords) => {
 
   const hit = (shot) => {
     hitsarray.push(shot);
-    console.log("here");
+
     return hitsarray;
   };
 
   const shipsunk = () => {
-    if (shipcords == hitsarray.length) {
+    if (shipcords === hitsarray.length) {
       return true;
     }
     return false;

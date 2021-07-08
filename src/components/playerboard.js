@@ -6,6 +6,9 @@ import Singleboard from "../components/singleboard.js";
 import Gameboard from "../factories/gameboard.js";
 
 const Placeships = (props) => {
+  const player = Gameboard();
+  const ai = Gameboard();
+
   let theships = [
     {
       ship: "carrier",
@@ -35,10 +38,10 @@ const Placeships = (props) => {
   ];
 
   //get blank board
-  let blankboard = Gameboard().createboard();
+  let blankboard1 = Gameboard().createboard();
 
-  const [playerboard, setplayerboard] = useState(blankboard);
-  const [aiboard, setaiboard] = useState(blankboard);
+  const [playerboard, setplayerboard] = useState(blankboard1);
+  const [aiboard, setaiboard] = useState(blankboard1);
 
   const [start, setstart] = useState(false);
 
@@ -48,7 +51,7 @@ const Placeships = (props) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const checkvalid = (newcord) => {
+  const checkvalid = (newcord, blankboard) => {
     let truthy = true;
     newcord.map(([a, b]) => {
       if (blankboard[a][b] === undefined || blankboard[a][b].ship === true) {
@@ -59,10 +62,11 @@ const Placeships = (props) => {
   };
 
   const placeships = (ship, blankboard) => {
+    console.log(ship);
     for (let i = 0; i < ship.cords[0].length; i++) {
       //work out whats going on here
-      let x = ship.cords[0][i][0];
-      let y = ship.cords[0][i][1];
+      let y = ship.cords[0][i][0];
+      let x = ship.cords[0][i][1];
       blankboard[x][y] = {
         ...blankboard[x][y],
         ship: true,
@@ -79,10 +83,12 @@ const Placeships = (props) => {
     theships.forEach((ship) => {
       let startcord = randomnumber();
       let y = randomnumber();
+
       let newcord = [];
       let i = 0;
       while (i < ship.long) {
-        if (checkvalid([[y, startcord + i]]) === true) {
+        //this is broken
+        if (checkvalid([[y, startcord + i]], blankboard) === true) {
           newcord.push([y, startcord + i]);
           i++;
         } else {
@@ -99,23 +105,25 @@ const Placeships = (props) => {
   };
 
   const handleclick = () => {
-    setplayerboard([...setcord()]);
-    setaiboard([...setcord()]);
+    let x = setcord();
+    setplayerboard([...x]);
+    let y = setcord();
+
+    setaiboard([...y]);
   };
 
   return (
     <div>
       {!start && <Singleboard board={playerboard} setcord={setcord} />}
-
       <div>
         {start && (
           <Gamecontroller
             playerboard={playerboard}
             aiboard={aiboard}
-            player={props.player}
-            ai={props.ai}
-            setstart={setstart}
+            player={player}
+            ai={ai}
             setgameover={props.setgameover}
+            setwinner={props.setwinner}
           />
         )}
         <button onClick={() => setstart(true)}>Start game</button>

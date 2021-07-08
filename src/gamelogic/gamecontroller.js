@@ -8,38 +8,32 @@ const Gamecontroller = (props) => {
   let aiboard = props.aiboard;
   const [theaiboard, setaiboard] = useState(aiboard);
   const [theplayerboard, setplayerboard] = useState(playerboard);
-  const [gameover, setgameover] = useState(false);
-
-  const restart = () => {
-    props.setstart(false);
-    setgameover(false);
-  };
 
   const testclick = (key, row) => {
-    //initailize
     let updatedboard = props.ai.receiveattack(row, key, aiboard);
-    setaiboard([...updatedboard]);
-    if (props.ai.allshipssunk() === true) {
-      props.setstart(false);
-      props.setgameover(true);
-      console.log("gameover");
-    }
+    setaiboard([...updatedboard.gameboard]);
 
-    const newboard = props.player.aiattack(theplayerboard);
-    setplayerboard([...newboard]);
+    if (props.ai.allshipssunk() === true) {
+      props.setgameover(true);
+      props.setwinner("You win!!");
+    } else if (updatedboard.hit !== true) {
+      const newboard = props.player.aiattack(theplayerboard);
+      setplayerboard([...newboard]);
+      if (props.player.allshipssunk() === true) {
+        props.setgameover(true);
+        props.setwinner("AI won!!");
+      }
+    }
     return;
   };
 
   return (
     <div>
-      {!gameover && (
-        <Grid
-          testclick={testclick}
-          playerboard={theplayerboard}
-          aiboard={theaiboard}
-        />
-      )}
-      {gameover && <Gameover restart={restart} />}
+      <Grid
+        testclick={testclick}
+        playerboard={theplayerboard}
+        aiboard={theaiboard}
+      />
     </div>
   );
 };
