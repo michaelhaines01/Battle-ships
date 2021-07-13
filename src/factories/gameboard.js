@@ -35,39 +35,47 @@ const Gameboard = () => {
     if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
       //this should be the ship name and call ship hit
       ships[gameboard[x][y].display].hit(x);
-      gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
+      gameboard[x][y] = { ...gameboard[x][y], hit: true };
       return { gameboard, hit };
     } else {
-      gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
+      gameboard[x][y] = { ...gameboard[x][y], hit: true };
       hit = false;
       return { gameboard, hit };
     }
   };
 
-  let aiattack = (gameboard) => {
+  let aiattack = (gameboard, lastshot, hit) => {
     let aishot = false;
-    let hit = true;
-    let x = randomnumber();
-    let y = randomnumber();
+
+    let x = 0;
+    let y = 0;
+
+    if (hit === true && lastshot.y + 1 !== 10) {
+      x = lastshot.x;
+      y = lastshot.y + 1;
+    } else {
+      x = randomnumber();
+      y = randomnumber();
+    }
+
     while (aishot === false) {
       if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
         ships[gameboard[x][y].display].hit(x);
-        gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
-        y = y + 1;
-        continue;
-      } else if (gameboard[x][y].ship === undefined) {
-        y = randomnumber();
-        continue;
-      } // needs to know if undefined
-      //needs to know if the spot has already been hit
-      else if (gameboard[x][y].hit !== true) {
+        //send last shot maybe
+        gameboard[x][y] = { ...gameboard[x][y], hit: true };
+        lastshot = { x: x, y: y };
+        aishot = true;
+        hit = true;
+      } else if (gameboard[x][y].hit !== true) {
         gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
         aishot = true;
+        hit = false;
       }
       x = randomnumber();
       y = randomnumber();
     }
-    return gameboard;
+
+    return { gameboard, lastshot, hit };
   };
 
   const allshipssunk = () => {
@@ -79,7 +87,21 @@ const Gameboard = () => {
     return true;
   };
 
-  return { aiattack, ships, receiveattack, allshipssunk, createboard };
+  const isshipsunk = (shipname) => {
+    if (ships[shipname].shipsunk() !== true) {
+      return false;
+    }
+    return true;
+  };
+
+  return {
+    aiattack,
+    ships,
+    receiveattack,
+    allshipssunk,
+    createboard,
+    isshipsunk,
+  };
 };
 
 export default Gameboard;

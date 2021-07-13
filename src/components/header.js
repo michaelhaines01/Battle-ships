@@ -1,4 +1,10 @@
+import "./header.css";
+
 const Header = () => {
-  return <h1>Battleships</h1>;
+  return (
+    <div className="header">
+      <h1>Battleships</h1>
+    </div>
+  );
 };
 export default Header;

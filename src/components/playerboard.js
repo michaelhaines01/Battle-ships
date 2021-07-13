@@ -8,32 +8,69 @@ import Gameboard from "../factories/gameboard.js";
 const Placeships = (props) => {
   const player = Gameboard();
   const ai = Gameboard();
-
+  // Maybe Make this a state.
   let theships = [
     {
       ship: "carrier",
       long: 5,
       cords: [],
+      vertical: true,
     },
     {
       ship: "battleship",
       long: 4,
       cords: [],
+      vertical: false,
     },
     {
       ship: "destroyer",
       long: 3,
       cords: [],
+      vertical: true,
     },
     {
       ship: "submarine",
       long: 3,
       cords: [],
+      vertical: false,
     },
     {
       ship: "patrolboat",
       long: 2,
       cords: [],
+      vertical: true,
+    },
+  ];
+  let aiships = [
+    {
+      ship: "carrier",
+      long: 5,
+      cords: [],
+      vertical: true,
+    },
+    {
+      ship: "battleship",
+      long: 4,
+      cords: [],
+      vertical: false,
+    },
+    {
+      ship: "destroyer",
+      long: 3,
+      cords: [],
+      vertical: true,
+    },
+    {
+      ship: "submarine",
+      long: 3,
+      cords: [],
+      vertical: false,
+    },
+    {
+      ship: "patrolboat",
+      long: 2,
+      cords: [],
+      vertical: true,
     },
   ];
 
@@ -45,16 +82,24 @@ const Placeships = (props) => {
 
   const [start, setstart] = useState(false);
 
-  let randomnumber = () => {
+  const randomnumber = () => {
     const min = 0;
     const max = 9;
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
+  const randomxy = () => {
+    const random = ["true", "false"][Math.round(Math.random())];
+    return random;
+  };
+
   const checkvalid = (newcord, blankboard) => {
     let truthy = true;
+    console.log(newcord);
     newcord.map(([a, b]) => {
-      if (blankboard[a][b] === undefined || blankboard[a][b].ship === true) {
+      if (a === 10 || b === 10) {
+        return (truthy = false);
+      } else if (blankboard[a][b].ship === true) {
         return (truthy = false);
       }
     });
@@ -65,8 +110,8 @@ const Placeships = (props) => {
     console.log(ship);
     for (let i = 0; i < ship.cords[0].length; i++) {
       //work out whats going on here
-      let y = ship.cords[0][i][0];
-      let x = ship.cords[0][i][1];
+      let x = ship.cords[0][i][0];
+      let y = ship.cords[0][i][1];
       blankboard[x][y] = {
         ...blankboard[x][y],
         ship: true,
@@ -77,27 +122,39 @@ const Placeships = (props) => {
     return blankboard;
   };
 
-  const setcord = () => {
+  const setcord = (ships) => {
     let blankboard = Gameboard().createboard();
 
-    theships.forEach((ship) => {
+    ships.forEach((ship) => {
       let startcord = randomnumber();
       let y = randomnumber();
-
       let newcord = [];
       let i = 0;
+
       while (i < ship.long) {
-        //this is broken
-        if (checkvalid([[y, startcord + i]], blankboard) === true) {
-          newcord.push([y, startcord + i]);
-          i++;
+        if (ship.vertical === true) {
+          if (checkvalid([[y, startcord + i]], blankboard) === true) {
+            newcord.push([y, startcord + i]);
+            i++;
+          } else {
+            startcord = randomnumber();
+            y = randomnumber();
+            i = 0;
+            newcord = [];
+          }
         } else {
-          startcord = randomnumber();
-          y = randomnumber();
-          i = 0;
-          newcord = [];
+          if (checkvalid([[y + i, startcord]], blankboard) === true) {
+            newcord.push([y + i, startcord]);
+            i++;
+          } else {
+            startcord = randomnumber();
+            y = randomnumber();
+            i = 0;
+            newcord = [];
+          }
         }
       }
+
       ship.cords.push(newcord);
       placeships(ship, blankboard);
     });
@@ -105,11 +162,12 @@ const Placeships = (props) => {
   };
 
   const handleclick = () => {
-    let x = setcord();
-    setplayerboard([...x]);
-    let y = setcord();
+    let playerset = setcord(theships);
+    setplayerboard([...playerset]);
+    //this is the same as the ships do not reset
+    let aiset = setcord(aiships);
 
-    setaiboard([...y]);
+    setaiboard([...aiset]);
   };
 
   return (
@@ -126,9 +184,11 @@ const Placeships = (props) => {
             setwinner={props.setwinner}
           />
         )}
-        <button onClick={() => setstart(true)}>Start game</button>
+        {!start && <button onClick={() => setstart(true)}>Start game</button>}
         <div>
-          <button onClick={() => handleclick()}>Random ships</button>
+          {!start && (
+            <button onClick={() => handleclick()}>Random ships</button>
+          )}
         </div>
       </div>
     </div>
