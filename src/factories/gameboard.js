@@ -47,47 +47,66 @@ const Gameboard = () => {
   let aiattack = (gameboard, lastshot, hit) => {
     console.log(lastshot);
     console.log(hit);
+    if (hit === true) {
+      if (
+        gameboard[lastshot.x + 1][lastshot.y].ship === true &&
+        gameboard[lastshot.x + 1][lastshot.y].hit !== true
+      ) {
+        lastshot = { x: lastshot.x + 1, y: lastshot.y };
+        ships[gameboard[lastshot.x + 1][lastshot.y].display].hit(
+          lastshot.x + 1
+        );
+        gameboard[lastshot.x + 1][lastshot.y] = {
+          ...gameboard[lastshot.x + 1][lastshot.y],
+          hit: true,
+        };
+      } else if (
+        gameboard[lastshot.x - 1][lastshot.y].ship === true &&
+        gameboard[lastshot.x - 1][lastshot.y].hit !== true
+      ) {
+        lastshot = { x: lastshot.x - 1, y: lastshot.y };
+        ships[gameboard[lastshot.x - 1][lastshot.y].display].hit("hit");
+        gameboard[lastshot.x - 1][lastshot.y] = {
+          ...gameboard[lastshot.x - 1][lastshot.y],
+          hit: true,
+        };
+      } else if (
+        gameboard[lastshot.x][lastshot.y + 1].ship === true &&
+        gameboard[lastshot.x][lastshot.y + 1].hit !== true
+      ) {
+        lastshot = { x: lastshot.x, y: lastshot.y + 1 };
+        ships[gameboard[lastshot.x][lastshot.y + 1].display].hit("hit");
+        gameboard[lastshot.x][lastshot.y + 1] = {
+          ...gameboard[lastshot.x][lastshot.y + 1],
+          hit: true,
+        };
+      } else if (
+        gameboard[lastshot.x][lastshot.y - 1].ship === true &&
+        gameboard[lastshot.x][lastshot.y - 1].hit !== true
+      ) {
+        lastshot = { x: lastshot.x, y: lastshot.y - 1 };
+        ships[gameboard[lastshot.x][lastshot.y - 1].display].hit("hit");
+        gameboard[lastshot.x][lastshot.y - 1] = {
+          ...gameboard[lastshot.x][lastshot.y - 1],
+          hit: true,
+        };
+      } else {
+        lastshot = { x: randomnumber(), y: randomnumber() };
+        gameboard[lastshot.x][lastshot.y] = {
+          ...gameboard[lastshot.x][lastshot.y],
+          hit: true,
+        };
+        return { gameboard, lastshot, hit };
+      }
 
-    if (
-      gameboard[lastshot.x + 1][lastshot.y].ship === true &&
-      gameboard[lastshot.x + 1][lastshot.y].hit !== true
-    ) {
-      lastshot = { x: lastshot.x + 1, y: lastshot.y };
-      ships[gameboard[lastshot.x + 1][lastshot.y].display].hit(lastshot.x + 1);
-      gameboard[lastshot.x + 1][lastshot.y] = {
-        ...gameboard[lastshot.x + 1][lastshot.y],
-        hit: true,
-      };
-    } else if (
-      gameboard[lastshot.x - 1][lastshot.y].ship === true &&
-      gameboard[lastshot.x - 1][lastshot.y].hit !== true
-    ) {
-      lastshot = { x: lastshot.x - 1, y: lastshot.y };
-      ships[gameboard[lastshot.x - 1][lastshot.y].display].hit("hit");
-      gameboard[lastshot.x - 1][lastshot.y] = {
-        ...gameboard[lastshot.x - 1][lastshot.y],
-        hit: true,
-      };
-    } else if (
-      gameboard[lastshot.x][lastshot.y + 1].ship === true &&
-      gameboard[lastshot.x][lastshot.y + 1].hit !== true
-    ) {
-      lastshot = { x: lastshot.x, y: lastshot.y + 1 };
-      ships[gameboard[lastshot.x][lastshot.y + 1].display].hit("hit");
-      gameboard[lastshot.x][lastshot.y + 1] = {
-        ...gameboard[lastshot.x][lastshot.y + 1],
-        hit: true,
-      };
-    } else if (
-      gameboard[lastshot.x][lastshot.y - 1].ship === true &&
-      gameboard[lastshot.x][lastshot.y - 1].hit !== true
-    ) {
-      lastshot = { x: lastshot.x, y: lastshot.y - 1 };
-      ships[gameboard[lastshot.x][lastshot.y - 1].display].hit("hit");
-      gameboard[lastshot.x][lastshot.y - 1] = {
-        ...gameboard[lastshot.x][lastshot.y - 1],
-        hit: true,
-      };
+      //must update (the gameboard)
+      //lastshot : {x:x,y:y}
+      //hit : true ,false
+
+      //if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
+      //ships[gameboard[x][y].display].hit(x);
+      //send last shot maybe
+      // gameboard[x][y] = { ...gameboard[x][y], hit: true };
     } else {
       lastshot = { x: randomnumber(), y: randomnumber() };
       gameboard[lastshot.x][lastshot.y] = {
@@ -95,19 +114,9 @@ const Gameboard = () => {
         hit: true,
         display: "X",
       };
+      hit = false;
       return { gameboard, lastshot, hit };
     }
-
-    //must update (the gameboard)
-    //lastshot : {x:x,y:y}
-    //hit : true ,false
-
-    //if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
-    //ships[gameboard[x][y].display].hit(x);
-    //send last shot maybe
-    // gameboard[x][y] = { ...gameboard[x][y], hit: true };
-
-    return { gameboard, lastshot, hit };
   };
 
   const allshipssunk = () => {
