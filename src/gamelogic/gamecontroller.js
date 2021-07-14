@@ -1,7 +1,7 @@
+import "../App.css";
 import React, { useState } from "react";
 import Grid from "../components/grid.js";
-import Gameover from "../components/gameover.js";
-import Gameboard from "../factories/gameboard.js";
+
 import Playershiplist from "../components/playershiplist.js";
 import Aishiplist from "../components/aishiplist";
 const Gamecontroller = (props) => {
@@ -16,12 +16,14 @@ const Gamecontroller = (props) => {
     { ship: "destroyer", sunk: false },
     { ship: "submarine", sunk: false },
     { ship: "patrolboat", sunk: false },
+    { ship: "carrier", sunk: false },
   ]);
   const [aisunkships, setaisunkships] = useState([
     { ship: "battleship", sunk: false },
     { ship: "destroyer", sunk: false },
     { ship: "submarine", sunk: false },
     { ship: "patrolboat", sunk: false },
+    { ship: "carrier", sunk: false },
   ]);
 
   const checkwinner = () => {
@@ -59,31 +61,26 @@ const Gamecontroller = (props) => {
       const newboard = props.player.aiattack(theplayerboard, lastshot, hit);
       setlastshot({ ...newboard.lastshot });
       setplayerboard([...newboard.gameboard]);
-      console.log(lastshot);
       sethit(newboard.hit);
-      console.log(lastshot.x);
+
       if (newboard.hit === true) {
-        try {
-          if (
-            props.player.isshipsunk(
+        if (
+          props.player.isshipsunk(
+            theplayerboard[newboard.lastshot.x][newboard.lastshot.y].display
+          ) === true
+        ) {
+          let indexai = aisunkships.findIndex((element) => {
+            if (
+              element.ship ===
               theplayerboard[newboard.lastshot.x][newboard.lastshot.y].display
-            ) === true
-          ) {
-            let index = aisunkships.findIndex((element) => {
-              if (
-                element.ship === theplayerboard[lastshot.x][lastshot.y].display
-              ) {
-                return true;
-              }
-              console.log(index);
-              handleAddai(index);
-            });
-          }
-        } catch (err) {
-          console.log("try again");
-          return;
+            ) {
+              return true;
+            }
+          });
+          handleAddai(indexai);
         }
       }
+
       checkwinner();
 
       return;
@@ -112,8 +109,10 @@ const Gamecontroller = (props) => {
         playerboard={theplayerboard}
         aiboard={theaiboard}
       />
-      <Playershiplist playersunkships={playersunkships} />
-      <Aishiplist aisunkships={aisunkships} />
+      <div className="list-container">
+        <Playershiplist playersunkships={playersunkships} />
+        <Aishiplist aisunkships={aisunkships} />
+      </div>
     </div>
   );
 };

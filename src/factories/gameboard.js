@@ -53,9 +53,6 @@ const Gameboard = () => {
     if (hit === true && lastshot.y + 1 !== 10) {
       x = lastshot.x;
       y = lastshot.y + 1;
-    } else {
-      x = randomnumber();
-      y = randomnumber();
     }
 
     while (aishot === false) {
@@ -70,6 +67,7 @@ const Gameboard = () => {
         gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
         aishot = true;
         hit = false;
+        lastshot = { x: x, y: y };
       }
       x = randomnumber();
       y = randomnumber();
