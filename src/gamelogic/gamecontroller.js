@@ -9,7 +9,7 @@ const Gamecontroller = (props) => {
   let aiboard = props.aiboard;
   const [theaiboard, setaiboard] = useState(aiboard);
   const [theplayerboard, setplayerboard] = useState(playerboard);
-  const [lastshot, setlastshot] = useState(-1);
+  const [lastshot, setlastshot] = useState({ x: 1, y: 1 });
   const [hit, sethit] = useState(false);
   const [playersunkships, setsunkships] = useState([
     { ship: "battleship", sunk: false },
