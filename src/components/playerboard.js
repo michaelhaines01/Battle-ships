@@ -4,7 +4,7 @@ import Player from "../factories/player";
 import Gamecontroller from "../gamelogic/gamecontroller.js";
 import Singleboard from "../components/singleboard.js";
 import Gameboard from "../factories/gameboard.js";
-
+import Dragships from "./dragships.js";
 const Placeships = (props) => {
   const player = Gameboard();
   const ai = Gameboard();
@@ -174,6 +174,7 @@ const Placeships = (props) => {
     <div>
       {!start && <Singleboard board={playerboard} setcord={setcord} />}
       <div>
+        <div>{!start && <Dragships theships={theships} />}</div>
         {start && (
           <Gamecontroller
             playerboard={playerboard}

@@ -44,29 +44,6 @@ const Gameboard = () => {
     }
   };
 
-  /* if (hit === true && lastshot.y + 1 !== 10) {
-    x = lastshot.x;
-    y = lastshot.y + 1;
-  }
-
- while (aishot === false) {
-    if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
-      ships[gameboard[x][y].display].hit(x);
-      //send last shot maybe
-      gameboard[x][y] = { ...gameboard[x][y], hit: true };
-      lastshot = { x: x, y: y };
-      aishot = true;
-      hit = true;
-    } else if (gameboard[x][y].hit !== true) {
-      gameboard[x][y] = { ...gameboard[x][y], hit: true, display: "X" };
-      aishot = true;
-      hit = false;
-      lastshot = { x: x, y: y };
-    }
-    x = randomnumber();
-    y = randomnumber();
-  }*/
-
   let aiattack = (gameboard, lastshot, hit) => {
     let aishot = false;
 
