@@ -12,18 +12,18 @@ const Gamecontroller = (props) => {
   const [lastshot, setlastshot] = useState({ x: 1, y: 1 });
   const [hit, sethit] = useState(false);
   const [playersunkships, setsunkships] = useState([
-    { ship: "battleship", sunk: false },
-    { ship: "destroyer", sunk: false },
-    { ship: "submarine", sunk: false },
-    { ship: "patrolboat", sunk: false },
-    { ship: "carrier", sunk: false },
+    { ship: "battleship", sunk: false, long: 4 },
+    { ship: "destroyer", sunk: false, long: 3 },
+    { ship: "submarine", sunk: false, long: 3 },
+    { ship: "patrolboat", sunk: false, long: 2 },
+    { ship: "carrier", sunk: false, long: 5 },
   ]);
   const [aisunkships, setaisunkships] = useState([
-    { ship: "battleship", sunk: false },
-    { ship: "destroyer", sunk: false },
-    { ship: "submarine", sunk: false },
-    { ship: "patrolboat", sunk: false },
-    { ship: "carrier", sunk: false },
+    { ship: "battleship", sunk: false, long: 4 },
+    { ship: "destroyer", sunk: false, long: 3 },
+    { ship: "submarine", sunk: false, long: 3 },
+    { ship: "patrolboat", sunk: false, long: 2 },
+    { ship: "carrier", sunk: false, long: 5 },
   ]);
 
   const checkwinner = () => {
@@ -37,27 +37,29 @@ const Gamecontroller = (props) => {
   };
 
   const testclick = (key, row) => {
-    setTimeout(function () {
-      let updatedboard = props.ai.receiveattack(row, key, aiboard);
+    let updatedboard = props.ai.receiveattack(row, key, aiboard);
 
-      setaiboard([...updatedboard.gameboard]);
-      if (updatedboard.hit === true) {
-        //this returns true or false if ship is sunk
-        if (props.ai.isshipsunk(theaiboard[row][key].display) === true) {
-          //update sunken state
-          let index = playersunkships.findIndex((element) => {
-            if (element.ship === theaiboard[row][key].display) {
-              return true;
-            }
-          });
-          handleAddplayer(index, playersunkships, setsunkships);
-        }
-
-        checkwinner();
+    setaiboard([...updatedboard.gameboard]);
+    if (updatedboard.hit === true) {
+      //this returns true or false if ship is sunk
+      if (props.ai.isshipsunk(theaiboard[row][key].display) === true) {
+        //update sunken state
+        let index = playersunkships.findIndex((element) => {
+          if (element.ship === theaiboard[row][key].display) {
+            return true;
+          }
+        });
+        handleAddplayer(index, playersunkships, setsunkships);
       }
 
-      //ai
+      checkwinner();
+    }
 
+    //ai
+  };
+
+  const handleai = () => {
+    setTimeout(function () {
       const newboard = props.player.aiattack(theplayerboard, lastshot, hit);
       setlastshot({ ...newboard.lastshot });
       setplayerboard([...newboard.gameboard]);

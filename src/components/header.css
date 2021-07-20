@@ -1,3 +1,9 @@
 .header {
+  font-family: Stencil Std, fantasy;
+  font-size: 300%;
   text-align: center;
+  background: linear-gradient(#053fa1e1, #4d4d4ee1);
+  text-shadow: 1px, black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }

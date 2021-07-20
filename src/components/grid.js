@@ -13,7 +13,7 @@ const Grid = (props) => {
             if (cell.ship === true && cell.hit === false)
               return (
                 <div
-                  className="grid-square"
+                  className="hidden-square"
                   key={key}
                   value={row}
                   onClick={() => {
@@ -47,7 +47,7 @@ const Grid = (props) => {
               );
             return (
               <div
-                className="grid-square"
+                className="hidden-square"
                 key={key}
                 value={row}
                 onClick={() => {
@@ -58,7 +58,9 @@ const Grid = (props) => {
           })
         )}
       </div>
-
+      <div className="message-board">
+        <h1>HII</h1>
+      </div>
       <div className="game-board" id="ai">
         {human.map((nested, row) =>
           nested.map((cell, key) => {
@@ -66,7 +68,9 @@ const Grid = (props) => {
               return <div className="ship-square" key={key} value={row}></div>;
             else if (cell.ship === true && cell.hit === true)
               return <div className="shiphit-square"></div>;
-            return <div className="hit-square">{cell.display}</div>;
+            else if (cell.hit === true)
+              return <div className="hit-square">X</div>;
+            return <div className="hit-square"></div>;
           })
         )}
       </div>

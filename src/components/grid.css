@@ -19,7 +19,20 @@
   justify-content: center;
   align-items: center;
   font-size: 2.1rem;
-  background-color: rgb(14, 14, 53);
+  background-color: #053fa1e1;
+}
+
+.hidden-square {
+  position: relative;
+  box-shadow: 0 0 9px #67ff9a;
+  border: 1px solid #0ffd5e;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.1rem;
+  background-color: black;
 }
 
 .ship-square {
@@ -45,8 +58,9 @@
   justify-content: center;
   align-items: center;
   font-size: 2.1rem;
-  background-color: rgb(30, 150, 230);
-  color: rgb(119, 22, 22);
+  background-color: #053fa1e1;
+
+  color: black;
 }
 
 .shiphit-square {
@@ -60,4 +74,11 @@
   align-items: center;
   font-size: 2.1rem;
   background-color: rgb(236, 105, 53);
+}
+
+.message-board {
+  background-color: cadetblue;
+  width: 20%;
+  height: 100%;
+  text-align: center;
 }
