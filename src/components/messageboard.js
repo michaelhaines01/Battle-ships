@@ -8,10 +8,20 @@ const Messageboard = (props) => {
     return <h1>Player turn!</h1>;
   };
 
+  const Winnermessage = () => {
+    return (
+      <div>
+        <h1>{props.winner.winner} WINS !!</h1>{" "}
+        <button onClick={() => props.setgameover(true)}>Restart </button>
+      </div>
+    );
+  };
+
   return (
     <div className="messageboard-container">
-      {!props.turn && <Aimessage />}
-      {props.turn && <Playermessage />}
+      {!props.turn && !props.winner.gameover && <Aimessage />}
+      {props.turn && !props.winner.gameover && <Playermessage />}
+      {props.winner.gameover && <Winnermessage />}
     </div>
   );
 };

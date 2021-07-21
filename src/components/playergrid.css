@@ -25,9 +25,15 @@
 .start-btn {
   background-color: rgb(29, 197, 7);
   font-size: 150%;
+  box-shadow: 0 0 9px #67ff9a;
+  border: 1px solid #0ffd5e;
+  font: Stencil Std, fantasy;
 }
 
 .place-btn {
   background-color: rgb(251, 13, 5);
   font-size: 150%;
+  box-shadow: 0 0 9px #67ff9a;
+  border: 1px solid #0ffd5e;
+  font: Stencil Std, fantasy;
 }

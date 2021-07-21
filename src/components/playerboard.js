@@ -193,7 +193,7 @@ const Placeships = (props) => {
           )}
           {!start && shipsplaced && (
             <button className="start-btn" onClick={() => setstart(true)}>
-              Start game
+              Start game!
             </button>
           )}
         </div>

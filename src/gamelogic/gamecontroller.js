@@ -28,14 +28,16 @@ const Gamecontroller = (props) => {
     { ship: "carrier", sunk: false, long: 5 },
   ]);
   const [turn, setturn] = useState(true);
+  const [winner, setwinner] = useState({ winner: "", gameover: false });
 
   const checkwinner = () => {
     if (props.ai.allshipssunk() === true) {
-      props.setgameover(true);
-      props.setwinner("You win!!");
+      //this resets game
+      //props.setgameover(true);
+      setwinner({ winner: "AI", gameover: true });
     } else if (props.player.allshipssunk() === true) {
-      props.setgameover(true);
-      props.setwinner("AI won!!");
+      //props.setgameover(true);
+      setwinner({ winner: "Player", gameover: true });
     }
   };
 
@@ -61,7 +63,7 @@ const Gamecontroller = (props) => {
 
     setTimeout(function () {
       Handleai();
-    }, 0);
+    }, 1000);
   };
 
   const Handleai = () => {
@@ -96,14 +98,14 @@ const Gamecontroller = (props) => {
 
   const handleAddplayer = (index) => {
     let newsunkships = [...playersunkships];
-    console.log(index);
+
     newsunkships[index] = { ...newsunkships[index], sunk: true };
     setsunkships([...newsunkships]);
     return;
   };
   const handleAddai = (index) => {
     let newaisunkships = [...aisunkships];
-    console.log(index);
+
     newaisunkships[index] = { ...newaisunkships[index], sunk: true };
     setaisunkships([...newaisunkships]);
     return;
@@ -113,7 +115,12 @@ const Gamecontroller = (props) => {
     <div>
       <div className="board-container">
         <Grid testclick={testclick} aiboard={theaiboard} />
-        <Messageboard turn={turn} setturn={setturn} />
+        <Messageboard
+          turn={turn}
+          setturn={setturn}
+          winner={winner}
+          setgameover={props.setgameover}
+        />
         <Humanboard playerboard={playerboard} />
       </div>
 
