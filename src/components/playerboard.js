@@ -81,7 +81,7 @@ const Placeships = (props) => {
   const [aiboard, setaiboard] = useState(blankboard1);
 
   const [start, setstart] = useState(false);
-
+  const [shipsplaced, setshipsplace] = useState(false);
   const randomnumber = () => {
     const min = 0;
     const max = 9;
@@ -157,6 +157,7 @@ const Placeships = (props) => {
 
       ship.cords.push(newcord);
       placeships(ship, blankboard);
+      setshipsplace(true);
     });
     return blankboard;
   };
@@ -174,7 +175,6 @@ const Placeships = (props) => {
     <div>
       {!start && <Singleboard board={playerboard} setcord={setcord} />}
       <div>
-        <div>{!start && <Dragships theships={theships} />}</div>
         {start && (
           <Gamecontroller
             playerboard={playerboard}
@@ -185,10 +185,16 @@ const Placeships = (props) => {
             setwinner={props.setwinner}
           />
         )}
-        {!start && <button onClick={() => setstart(true)}>Start game</button>}
-        <div>
+        <div className="button-container">
           {!start && (
-            <button onClick={() => handleclick()}>Random ships</button>
+            <button className="place-btn" onClick={() => handleclick()}>
+              Place ships
+            </button>
+          )}
+          {!start && shipsplaced && (
+            <button className="start-btn" onClick={() => setstart(true)}>
+              Start game
+            </button>
           )}
         </div>
       </div>

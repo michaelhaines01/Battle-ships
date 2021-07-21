@@ -14,3 +14,20 @@
   grid-template-columns: repeat(10), minmax(1px, auto) [col-start];
   grid-template-rows: repeat(10), minmax(1px, auto) [col-start];
 }
+
+.button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2%;
+}
+
+.start-btn {
+  background-color: rgb(29, 197, 7);
+  font-size: 150%;
+}
+
+.place-btn {
+  background-color: rgb(251, 13, 5);
+  font-size: 150%;
+}
