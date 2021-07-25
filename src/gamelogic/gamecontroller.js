@@ -46,6 +46,7 @@ const Gamecontroller = (props) => {
   };
 
   const testclick = (key, row) => {
+    //Use state to dictate how the game flows
     if (winner.gameover === true) {
       return;
     } else {
