@@ -5,11 +5,12 @@ import Gamecontroller from "../gamelogic/gamecontroller.js";
 import Singleboard from "../components/singleboard.js";
 import Gameboard from "../factories/gameboard.js";
 import Dragships from "./dragships.js";
+
 const Placeships = (props) => {
   const player = Gameboard();
   const ai = Gameboard();
-  // Maybe Make this a state.
-  let theships = [
+
+  const theships = [
     {
       ship: "carrier",
       long: 5,
@@ -41,7 +42,7 @@ const Placeships = (props) => {
       vertical: true,
     },
   ];
-  let aiships = [
+  const aiships = [
     {
       ship: "carrier",
       long: 5,
@@ -74,14 +75,12 @@ const Placeships = (props) => {
     },
   ];
 
-  //get blank board
-  let blankboard1 = Gameboard().createboard();
-
+  const blankboard1 = Gameboard().createboard();
   const [playerboard, setplayerboard] = useState(blankboard1);
   const [aiboard, setaiboard] = useState(blankboard1);
-
   const [start, setstart] = useState(false);
   const [shipsplaced, setshipsplace] = useState(false);
+
   const randomnumber = () => {
     const min = 0;
     const max = 9;
@@ -95,7 +94,7 @@ const Placeships = (props) => {
 
   const checkvalid = (newcord, blankboard) => {
     let truthy = true;
-    console.log(newcord);
+
     newcord.map(([a, b]) => {
       if (a === 10 || b === 10) {
         return (truthy = false);
@@ -154,7 +153,6 @@ const Placeships = (props) => {
           }
         }
       }
-
       ship.cords.push(newcord);
       placeships(ship, blankboard);
       setshipsplace(true);
@@ -165,7 +163,7 @@ const Placeships = (props) => {
   const handleclick = () => {
     let playerset = setcord(theships);
     setplayerboard([...playerset]);
-    //this is the same as the ships do not reset
+
     let aiset = setcord(aiships);
 
     setaiboard([...aiset]);

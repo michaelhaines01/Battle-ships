@@ -27,7 +27,7 @@
   font-size: 150%;
   box-shadow: 0 0 9px #67ff9a;
   border: 1px solid #0ffd5e;
-  font: Stencil Std, fantasy;
+  font-family: army;
 }
 
 .place-btn {
@@ -35,5 +35,5 @@
   font-size: 150%;
   box-shadow: 0 0 9px #67ff9a;
   border: 1px solid #0ffd5e;
-  font: Stencil Std, fantasy;
+  font-family: army;
 }

@@ -1,18 +1,20 @@
 import "./messageboard.css";
 const Messageboard = (props) => {
   const Aimessage = () => {
-    return <h1>Ai turn!</h1>;
+    return <h1>Ai turn</h1>;
   };
 
   const Playermessage = () => {
-    return <h1>Player turn!</h1>;
+    return <h1>Player turn</h1>;
   };
 
   const Winnermessage = () => {
     return (
       <div>
-        <h1>{props.winner.winner} WINS !!</h1>{" "}
-        <button onClick={() => props.setgameover(true)}>Restart </button>
+        <h1>{props.winner.winner} LOL you will never beat me.</h1>
+        <button className="buttons" onClick={() => props.setgameover(true)}>
+          Restart{" "}
+        </button>
       </div>
     );
   };

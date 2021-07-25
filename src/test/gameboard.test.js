@@ -6,12 +6,6 @@ test("Test gameboard creation", () => {
   expect(board.board.length).toBe(10);
 });
 
-test("display", () => {
-  let board = Gameboard();
-  board.placeships();
-  expect(board.display()).toBe("hi");
-});
-
 test("placeships", () => {
   let board = Gameboard();
   board.placeships();

@@ -1,18 +1,18 @@
 import "./App.css";
 import Placeships from "./components/playerboard.js";
 import React, { useState } from "react";
-import Gameover from "./components/gameover.js";
+import Infoboard from "./components/info.js";
 import Header from "./components/header.js";
 
 function App() {
   //<Gamecontroller setrestart={setrestart} players={players} />
-  const [gameover, setgameover] = useState(false);
+  const [gameover, setgameover] = useState(true);
 
   return (
     <div>
       <Header />
-
-      <Placeships setgameover={setgameover} />
+      {gameover && <Infoboard setgameover={setgameover} />}
+      {!gameover && <Placeships setgameover={setgameover} />}
     </div>
   );
 }

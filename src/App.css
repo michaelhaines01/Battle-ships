@@ -1,8 +1,15 @@
+@font-face {
+  font-family: "army";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./font/army.woff") format("woff");
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: Poppins, sans-serif;
-  background: rgba(200, 200, 200, 0.808);
+  background: rgba(14, 14, 36, 0.965);
 }
 
 .list-container {
@@ -10,4 +17,15 @@ body {
   flex-direction: row; /* default value; can be omitted */
   flex-wrap: nowrap; /* default value; can be omitted */
   justify-content: space-between; /* switched from default (flex-start, see below) */
+}
+
+.legend-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.buttons {
+  font-family: army;
+  background-color: rgb(29, 197, 7);
 }

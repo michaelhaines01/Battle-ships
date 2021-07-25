@@ -48,11 +48,12 @@ const Gameboard = () => {
     let aishot = false;
 
     while (aishot === false) {
+      console.log(lastshot);
       if (
-        lastshot.x + 1 === 10 ||
-        lastshot.y + 1 === 10 ||
-        lastshot.x - 1 === -1 ||
-        lastshot.y - 1 === -1
+        lastshot.x + 1 >= 10 ||
+        lastshot.y + 1 >= 10 ||
+        lastshot.x - 1 <= -1 ||
+        lastshot.y - 1 <= -1
       ) {
         lastshot = { x: randomnumber(), y: randomnumber() };
       } else if (
@@ -121,9 +122,9 @@ const Gameboard = () => {
         lastshot = { x: lastshot.x, y: lastshot.y - 1 };
         hit = true;
         aishot = true;
-      } else if (gameboard[lastshot.x][lastshot.y].hit !== true) {
-        console.log("2");
+      } /*else if (gameboard[lastshot.x][lastshot.y].hit !== true) {
         lastshot = { x: randomnumber(), y: randomnumber() };
+
         gameboard[lastshot.x][lastshot.y] = {
           ...gameboard[lastshot.x][lastshot.y],
           hit: true,
@@ -131,7 +132,7 @@ const Gameboard = () => {
         };
         hit = false;
         aishot = true;
-      } else {
+      }*/ else {
         console.log("1");
         lastshot = { x: randomnumber(), y: randomnumber() };
       }
