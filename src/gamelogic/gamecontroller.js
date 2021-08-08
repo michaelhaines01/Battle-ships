@@ -122,6 +122,7 @@ const Gamecontroller = (props) => {
     <div className="game-container">
       <div className="twoboard-container">
         <Aiboard testclick={testclick} aiboard={theaiboard} />
+
         <Messageboard
           turn={turn}
           setturn={setturn}

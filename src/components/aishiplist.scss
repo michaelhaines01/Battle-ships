@@ -4,6 +4,7 @@
   display: flex;
   width: 20%;
   margin-top: 20px;
+
   justify-content: space-between;
   .ship {
     @include grid-square;

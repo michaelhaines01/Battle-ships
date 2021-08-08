@@ -1,8 +1,6 @@
 import Ship from "./ships.js";
 
 const Gameboard = () => {
-  //maybe looks at this
-
   const ships = {
     carrier: Ship("carrier", 5),
     battleship: Ship("battleship", 4),
@@ -33,7 +31,6 @@ const Gameboard = () => {
   const receiveattack = (x, y, gameboard) => {
     let hit = true;
     if (gameboard[x][y].ship === true && gameboard[x][y].hit !== true) {
-      //this should be the ship name and call ship hit
       ships[gameboard[x][y].display].hit(x);
       gameboard[x][y] = { ...gameboard[x][y], hit: true };
       return { gameboard, hit };
@@ -49,11 +46,12 @@ const Gameboard = () => {
 
     while (aishot === false) {
       console.log(lastshot);
+
       if (
-        lastshot.x + 1 >= 10 ||
-        lastshot.y + 1 >= 10 ||
-        lastshot.x - 1 <= -1 ||
-        lastshot.y - 1 <= -1
+        lastshot.x + 1 === 10 ||
+        lastshot.y + 1 === 10 ||
+        lastshot.x - 1 === -1 ||
+        lastshot.y - 1 === -1
       ) {
         lastshot = { x: randomnumber(), y: randomnumber() };
       } else if (
@@ -122,6 +120,8 @@ const Gameboard = () => {
         lastshot = { x: lastshot.x, y: lastshot.y - 1 };
         hit = true;
         aishot = true;
+
+        // true and true is there ?
       } /*else if (gameboard[lastshot.x][lastshot.y].hit !== true) {
         lastshot = { x: randomnumber(), y: randomnumber() };
 
