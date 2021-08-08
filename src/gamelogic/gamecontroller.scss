@@ -1,14 +1,17 @@
 .game-container {
-  display: flex;
-  flex-direction: column;
-  .board-container {
+  .twoboard-container {
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 70%;
   }
 
   .list-container {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 }

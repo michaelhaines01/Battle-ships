@@ -171,29 +171,28 @@ const Placeships = (props) => {
   return (
     <div>
       {!start && <Singleboard board={playerboard} setcord={setcord} />}
-      <div>
-        {start && (
-          <Gamecontroller
-            playerboard={playerboard}
-            aiboard={aiboard}
-            player={player}
-            ai={ai}
-            setgameover={props.setgameover}
-            setwinner={props.setwinner}
-          />
+
+      {start && (
+        <Gamecontroller
+          playerboard={playerboard}
+          aiboard={aiboard}
+          player={player}
+          ai={ai}
+          setgameover={props.setgameover}
+          setwinner={props.setwinner}
+        />
+      )}
+      <div className={"button-container " + (start && "active")}>
+        {!start && (
+          <button className="place-btn" onClick={() => handleclick()}>
+            Place ships
+          </button>
         )}
-        <div className="button-container">
-          {!start && (
-            <button className="place-btn" onClick={() => handleclick()}>
-              Place ships
-            </button>
-          )}
-          {!start && shipsplaced && (
-            <button className="start-btn" onClick={() => setstart(true)}>
-              Start game!
-            </button>
-          )}
-        </div>
+        {!start && shipsplaced && (
+          <button className="start-btn" onClick={() => setstart(true)}>
+            Start game!
+          </button>
+        )}
       </div>
     </div>
   );

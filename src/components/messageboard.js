@@ -1,4 +1,4 @@
-import "./messageboard.css";
+import "./messageboard.scss";
 const Messageboard = (props) => {
   const Aimessage = () => {
     return <h1>Ai turn</h1>;
