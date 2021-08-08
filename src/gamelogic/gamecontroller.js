@@ -1,6 +1,6 @@
-import "../App.css";
+import "./gamecontroller.scss";
 import React, { useState } from "react";
-import Grid from "../components/grid.js";
+import Aiboard from "../components/aiboard.js";
 import Humanboard from "../components/humanboard.js";
 import Playershiplist from "../components/playershiplist.js";
 import Aishiplist from "../components/aishiplist";
@@ -119,9 +119,9 @@ const Gamecontroller = (props) => {
   };
 
   return (
-    <div>
+    <div classname="game-container">
       <div className="board-container">
-        <Grid testclick={testclick} aiboard={theaiboard} />
+        <Aiboard testclick={testclick} aiboard={theaiboard} />
         <Messageboard
           turn={turn}
           setturn={setturn}

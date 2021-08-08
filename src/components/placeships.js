@@ -1,10 +1,9 @@
-import "./playergrid.css";
+import "./placeships.scss";
 import React, { useState } from "react";
 import Player from "../factories/player";
 import Gamecontroller from "../gamelogic/gamecontroller.js";
 import Singleboard from "../components/singleboard.js";
 import Gameboard from "../factories/gameboard.js";
-import Dragships from "./dragships.js";
 
 const Placeships = (props) => {
   const player = Gameboard();
@@ -127,6 +126,7 @@ const Placeships = (props) => {
     ships.forEach((ship) => {
       let startcord = randomnumber();
       let y = randomnumber();
+      ship.vertical = randomxy();
       let newcord = [];
       let i = 0;
 
@@ -165,7 +165,6 @@ const Placeships = (props) => {
     setplayerboard([...playerset]);
 
     let aiset = setcord(aiships);
-
     setaiboard([...aiset]);
   };
 

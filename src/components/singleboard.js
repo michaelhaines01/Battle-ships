@@ -1,3 +1,4 @@
+import "./singleboard.scss";
 const Singleboard = (props) => {
   return (
     <div>

@@ -1,0 +1,13 @@
+@import "../global.scss";
+
+.ship-container {
+  display: flex;
+  .ship {
+    @include grid-square;
+    background-color: grey;
+  }
+  .shiphit {
+    @include grid-square;
+    background-color: red;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./playershiplist.scss";
 
 const Playershiplist = (props) => {
   let ships = props.playersunkships;
@@ -7,13 +8,9 @@ const Playershiplist = (props) => {
     let shipsarray = [];
     for (let i = 0; i < props.ship.long; i++) {
       if (props.ship.sunk === true) {
-        shipsarray.push(
-          <div className="shiphit-square" id={props.ship.ship}></div>
-        );
+        shipsarray.push(<div className="shiphit" id={props.ship.ship}></div>);
       } else {
-        shipsarray.push(
-          <div className="ship-square" id={props.ship.ship}></div>
-        );
+        shipsarray.push(<div className="ship" id={props.ship.ship}></div>);
       }
     }
     return <div>{shipsarray}</div>;

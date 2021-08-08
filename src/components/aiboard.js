@@ -1,7 +1,7 @@
-import "./grid.css";
+import "./aiboard.scss";
 import React from "react";
 
-const Grid = (props) => {
+const Aiboard = (props) => {
   const ai = props.aiboard;
 
   return (
@@ -12,7 +12,7 @@ const Grid = (props) => {
             if (cell.ship === true && cell.hit === false)
               return (
                 <div
-                  className="hidden-square"
+                  className="hidden"
                   key={key}
                   value={row}
                   onClick={() => {
@@ -23,7 +23,7 @@ const Grid = (props) => {
             else if (cell.hit === true && cell.ship === false)
               return (
                 <div
-                  className="hit-square"
+                  className="miss"
                   key={key}
                   value={row}
                   onClick={() => {
@@ -36,7 +36,7 @@ const Grid = (props) => {
             else if (cell.hit === true && cell.ship === true)
               return (
                 <div
-                  className="shiphit-square"
+                  className="shiphit"
                   key={key}
                   value={row}
                   onClick={() => {
@@ -46,7 +46,7 @@ const Grid = (props) => {
               );
             return (
               <div
-                className="hidden-square"
+                className="hidden"
                 key={key}
                 value={row}
                 onClick={() => {
@@ -61,4 +61,4 @@ const Grid = (props) => {
   );
 };
 
-export default Grid;
+export default Aiboard;

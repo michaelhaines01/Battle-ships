@@ -1,0 +1,13 @@
+@mixin grid-square {
+  position: relative;
+  box-shadow: 0 0 9px #67ff9a;
+  border: 1px solid #0ffd5e;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  background-color: #053fa1e1;
+  overflow-y: hidden;
+}

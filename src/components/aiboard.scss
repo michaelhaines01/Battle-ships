@@ -1,0 +1,27 @@
+@import "../global.scss";
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 2fr);
+  border: 6px solid darkslategrey;
+  cursor: pointer;
+  .ship {
+    @include grid-square;
+    background-color: grey;
+  }
+  .shiphit {
+    @include grid-square;
+    background-color: red;
+  }
+  .openwater {
+    @include grid-square;
+    background-color: blue;
+  }
+  .miss {
+    @include grid-square;
+    background-color: blue;
+  }
+  .hidden {
+    @include grid-square;
+    background-color: black;
+  }
+}

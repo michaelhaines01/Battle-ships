@@ -1,5 +1,5 @@
 import "./App.css";
-import Placeships from "./components/playerboard.js";
+import Placeships from "./components/placeships.js";
 import React, { useState } from "react";
 import Infoboard from "./components/info.js";
 import Header from "./components/header.js";
@@ -9,7 +9,7 @@ function App() {
   const [gameover, setgameover] = useState(true);
 
   return (
-    <div>
+    <div className="app">
       <Header />
       {gameover && <Infoboard setgameover={setgameover} />}
       {!gameover && <Placeships setgameover={setgameover} />}
