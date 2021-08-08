@@ -123,10 +123,11 @@ const Placeships = (props) => {
   const setcord = (ships) => {
     let blankboard = Gameboard().createboard();
 
-    ships.forEach((ship) => {
+    ships.forEach((ship, index) => {
       let startcord = randomnumber();
       let y = randomnumber();
-      ship.vertical = randomxy();
+
+      ships[index] = { ...ships[index], vertical: randomxy() };
       let newcord = [];
       let i = 0;
 
