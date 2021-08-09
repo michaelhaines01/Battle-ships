@@ -45,8 +45,6 @@ const Gameboard = () => {
     let aishot = false;
 
     while (aishot === false) {
-      console.log(lastshot);
-
       if (
         gameboard[lastshot.x][lastshot.y].ship === true &&
         gameboard[lastshot.x][lastshot.y].hit !== true
@@ -120,17 +118,7 @@ const Gameboard = () => {
         lastshot = { x: lastshot.x, y: lastshot.y - 1 };
         hit = true;
         aishot = true;
-      } /* else if (gameboard[lastshot.x][lastshot.y].hit !== true) {
-        lastshot = { x: randomnumber(), y: randomnumber() };
-
-        gameboard[lastshot.x][lastshot.y] = {
-          ...gameboard[lastshot.x][lastshot.y],
-          hit: true,
-          display: "X",
-        };
-        hit = false;
-        aishot = true;
-      } */ else {
+      } else {
         console.log("1");
         lastshot = { x: randomnumber(), y: randomnumber() };
       }

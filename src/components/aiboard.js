@@ -16,7 +16,7 @@ const Aiboard = (props) => {
                   key={key}
                   value={row}
                   onClick={() => {
-                    props.testclick(key, row);
+                    props.handleClick(key, row);
                   }}
                 ></div>
               );
@@ -27,7 +27,7 @@ const Aiboard = (props) => {
                   key={key}
                   value={row}
                   onClick={() => {
-                    console.log("already hit bruh");
+                    console.log("already hit");
                   }}
                 >
                   X
@@ -50,7 +50,7 @@ const Aiboard = (props) => {
                 key={key}
                 value={row}
                 onClick={() => {
-                  props.testclick(key, row);
+                  props.handleClick(key, row);
                 }}
               ></div>
             );

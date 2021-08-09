@@ -1,16 +1,20 @@
 @import "../global.scss";
 
-.ship-container {
+.ships-container {
   display: flex;
-  width: 20%;
-  margin-top: 20px;
+  width: 150px;
+  height: 200px;
   justify-content: space-between;
-  .ship {
-    @include grid-square;
-    background-color: grey;
-  }
-  .shiphit {
-    @include grid-square;
-    background-color: red;
+  flex-direction: column;
+  .ship-container {
+    display: flex;
+    .ship-square {
+      @include grid-square;
+      background-color: grey;
+    }
+    .shiphit {
+      @include grid-square;
+      background-color: red;
+    }
   }
 }

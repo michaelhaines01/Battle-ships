@@ -7,8 +7,26 @@
   align-items: center;
   justify-content: center;
   font-family: army;
-  font-size: 150%;
+  text-align: center;
   box-shadow: 0 0 9px #67ff9a;
   border: 1px solid #0ffd5e;
-  transition: all 2s ease;
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80%;
+    padding: 10px;
+    align-items: center;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40%;
+      height: 40px;
+
+      font-family: army;
+      background-color: rgb(29, 197, 7);
+    }
+  }
 }

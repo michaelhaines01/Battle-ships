@@ -1,11 +1,14 @@
 @import "../global.scss";
 
-.ship-container {
+.ships-container {
   display: flex;
-  width: 20%;
+
   margin-top: 20px;
 
   justify-content: space-between;
+  .ship-container {
+    display: flex;
+  }
   .ship {
     @include grid-square;
     background-color: grey;

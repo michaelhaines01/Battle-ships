@@ -13,6 +13,8 @@ const Gamecontroller = (props) => {
   const [theplayerboard, setplayerboard] = useState(playerboard);
   const [lastshot, setlastshot] = useState({ x: 1, y: 1 });
   const [hit, sethit] = useState(false);
+  const [turn, setturn] = useState(true);
+  const [winner, setwinner] = useState({ winner: "", gameover: false });
   const [playersunkships, setsunkships] = useState([
     { ship: "battleship", sunk: false, long: 4 },
     { ship: "destroyer", sunk: false, long: 3 },
@@ -27,8 +29,6 @@ const Gamecontroller = (props) => {
     { ship: "patrolboat", sunk: false, long: 2 },
     { ship: "carrier", sunk: false, long: 5 },
   ]);
-  const [turn, setturn] = useState(true);
-  const [winner, setwinner] = useState({ winner: "", gameover: false });
 
   const checkwinner = () => {
     if (props.ai.allshipssunk() === true) {
@@ -45,13 +45,12 @@ const Gamecontroller = (props) => {
     }
   };
 
-  const testclick = (key, row) => {
-    //Use state to dictate how the game flows
+  const handleClick = (key, row) => {
     if (winner.gameover === true) {
+      console.log(winner.gameover);
       return;
     } else {
       let updatedboard = props.ai.receiveattack(row, key, aiboard);
-
       setaiboard([...updatedboard.gameboard]);
       if (updatedboard.hit === true) {
         //this returns true or false if ship is sunk
@@ -61,10 +60,10 @@ const Gamecontroller = (props) => {
             if (element.ship === theaiboard[row][key].display) {
               return true;
             }
+            return null;
           });
           handleAddplayer(index, playersunkships, setsunkships);
         }
-
         checkwinner();
       }
       setturn(false);
@@ -79,7 +78,6 @@ const Gamecontroller = (props) => {
     setlastshot({ ...newboard.lastshot });
     setplayerboard([...newboard.gameboard]);
     sethit(newboard.hit);
-
     if (newboard.hit === true) {
       if (
         props.player.isshipsunk(
@@ -93,20 +91,18 @@ const Gamecontroller = (props) => {
           ) {
             return true;
           }
+          return null;
         });
         handleAddai(indexai);
       }
     }
-
     checkwinner();
     setturn(true);
-
     return;
   };
 
   const handleAddplayer = (index) => {
     let newsunkships = [...playersunkships];
-
     newsunkships[index] = { ...newsunkships[index], sunk: true };
     setsunkships([...newsunkships]);
     return;
@@ -121,8 +117,8 @@ const Gamecontroller = (props) => {
   return (
     <div className="game-container">
       <div className="twoboard-container">
-        <Aiboard testclick={testclick} aiboard={theaiboard} />
-
+        <Playershiplist playersunkships={playersunkships} />
+        <Aiboard handleClick={handleClick} aiboard={theaiboard} />
         <Messageboard
           turn={turn}
           setturn={setturn}
@@ -130,10 +126,6 @@ const Gamecontroller = (props) => {
           setgameover={props.setgameover}
         />
         <Humanboard playerboard={playerboard} />
-      </div>
-
-      <div className="list-container">
-        <Playershiplist playersunkships={playersunkships} />
         <Aishiplist aisunkships={aisunkships} />
       </div>
     </div>

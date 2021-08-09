@@ -1,6 +1,6 @@
 import "./placeships.scss";
 import React, { useState } from "react";
-import Player from "../factories/player";
+
 import Gamecontroller from "../gamelogic/gamecontroller.js";
 import Singleboard from "../components/singleboard.js";
 import Gameboard from "../factories/gameboard.js";
@@ -94,7 +94,7 @@ const Placeships = (props) => {
   const checkvalid = (newcord, blankboard) => {
     let truthy = true;
 
-    newcord.map(([a, b]) => {
+    newcord.forEach(([a, b]) => {
       if (a === 10 || b === 10) {
         return (truthy = false);
       } else if (blankboard[a][b].ship === true) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./playershiplist.scss";
 
 const Playershiplist = (props) => {
@@ -13,11 +13,11 @@ const Playershiplist = (props) => {
         shipsarray.push(<div className="ship" id={props.ship.ship}></div>);
       }
     }
-    return <div>{shipsarray}</div>;
+    return <div className="ship-container">{shipsarray}</div>;
   };
 
   return (
-    <div className="ship-container">
+    <div className="ships-container">
       {ships.map((ship) => {
         return <Createship ship={ship} />;
       })}

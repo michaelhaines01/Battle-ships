@@ -27,7 +27,10 @@ const Infoboard = (props) => {
             onClick={() => props.setgameover(false)}
           >
             <h4>Lets do battle</h4>
-            <img src="https://img.icons8.com/ios-filled/30/00000/cannon.png" />
+            <img
+              src="https://img.icons8.com/ios-filled/30/00000/cannon.png"
+              alt="cannon"
+            />
           </button>
         </div>
       </div>
