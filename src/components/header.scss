@@ -1,12 +1,23 @@
+@import "../global.scss";
+
 .header {
   padding: 20px;
   width: 100%;
-  height: 15vh;
+  height: 18vh;
   font-family: army;
-  font-size: 300%;
+  font-size: 400%;
   text-align: center;
   background: rgb(104, 102, 102);
   text-shadow: 1px, black;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  @include mobile {
+    display: flex;
+    font-size: 180%;
+    height: 8vh;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 5px;
+  }
 }

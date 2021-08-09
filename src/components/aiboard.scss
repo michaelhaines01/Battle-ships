@@ -4,24 +4,39 @@
   grid-template-columns: repeat(10, 2fr);
   border: 6px solid darkslategrey;
   cursor: pointer;
-  .ship {
-    @include grid-square;
-    background-color: grey;
-  }
-  .shiphit {
+
+  .aishiphit {
     @include grid-square;
     background-color: red;
+    @include mobile {
+      width: 17px;
+      height: 17px;
+    }
   }
-  .openwater {
+  .aiopenwater {
     @include grid-square;
     background-color: blue;
+    @include mobile {
+      width: 17px;
+      height: 17px;
+      background-color: blue;
+    }
   }
-  .miss {
+  .aimiss {
     @include grid-square;
     background-color: blue;
+    @include mobile {
+      width: 17px;
+      height: 17px;
+      background-color: blue;
+    }
   }
   .hidden {
     @include grid-square;
     background-color: black;
+    @include mobile {
+      width: 17px;
+      height: 17px;
+    }
   }
 }

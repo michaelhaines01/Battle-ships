@@ -107,7 +107,6 @@ const Placeships = (props) => {
   const placeships = (ship, blankboard) => {
     console.log(ship);
     for (let i = 0; i < ship.cords[0].length; i++) {
-      //work out whats going on here
       let x = ship.cords[0][i][0];
       let y = ship.cords[0][i][1];
       blankboard[x][y] = {
@@ -191,7 +190,7 @@ const Placeships = (props) => {
         )}
         {!start && shipsplaced && (
           <button className="start-btn" onClick={() => setstart(true)}>
-            Start game!
+            Start game
           </button>
         )}
       </div>

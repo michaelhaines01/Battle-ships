@@ -4,16 +4,19 @@
   display: flex;
 
   flex-direction: column;
-  width: 30%;
+
   background-color: #75777ae1;
   height: 280px;
-  width: 280px;
-  margin-bottom: 50px;
+  width: 360px;
+  margin-bottom: 200px;
   font-family: army;
   justify-content: space-evenly;
   padding: 12px;
   box-shadow: 0 0 9px #67ff9a;
   border: 1px solid #0ffd5e;
+  @include mobile {
+    width: 280px;
+  }
 
   .sqaure-container {
     display: flex;
@@ -38,7 +41,7 @@
 
     h4 {
       margin-left: 50px;
-      font-size: larger;
+      font-size: 150%;
     }
   }
 

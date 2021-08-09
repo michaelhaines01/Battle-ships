@@ -2,19 +2,31 @@
 
 .ships-container {
   display: flex;
-  width: 150px;
+  width: 180px;
   height: 200px;
   justify-content: space-between;
   flex-direction: column;
+  @include mobile {
+    flex-direction: row;
+    height: 38px;
+  }
   .ship-container {
     display: flex;
     .ship-square {
       @include grid-square;
       background-color: grey;
+      @include mobile {
+        width: 8px;
+        height: 8px;
+      }
     }
     .shiphit {
       @include grid-square;
       background-color: red;
+      @include mobile {
+        width: 8px;
+        height: 8px;
+      }
     }
   }
 }

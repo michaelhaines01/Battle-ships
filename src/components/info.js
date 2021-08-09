@@ -26,7 +26,7 @@ const Infoboard = (props) => {
             className="startbutton"
             onClick={() => props.setgameover(false)}
           >
-            <h4>Lets do battle</h4>
+            <h3>Lets do battle</h3>
             <img
               src="https://img.icons8.com/ios-filled/30/00000/cannon.png"
               alt="cannon"

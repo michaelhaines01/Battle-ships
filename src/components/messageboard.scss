@@ -1,8 +1,9 @@
+@import "../global.scss";
 .messageboard-container {
   background-color: #75777ae1;
-  width: 300px;
-  height: 180px;
-
+  width: 240px;
+  height: 220px;
+  font-size: 120%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +11,12 @@
   text-align: center;
   box-shadow: 0 0 9px #67ff9a;
   border: 1px solid #0ffd5e;
+  @include mobile {
+    width: 180px;
+    height: 70px;
+    font-size: 50%;
+    overflow: hidden;
+  }
   div {
     display: flex;
     flex-direction: column;
@@ -24,9 +31,12 @@
       align-items: center;
       width: 40%;
       height: 40px;
-
       font-family: army;
       background-color: rgb(29, 197, 7);
+      @include mobile {
+        height: 20px;
+        overflow: hidden;
+      }
     }
   }
 }

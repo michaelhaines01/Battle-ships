@@ -23,7 +23,7 @@ const Aiboard = (props) => {
             else if (cell.hit === true && cell.ship === false)
               return (
                 <div
-                  className="miss"
+                  className="aimiss"
                   key={key}
                   value={row}
                   onClick={() => {
@@ -36,7 +36,7 @@ const Aiboard = (props) => {
             else if (cell.hit === true && cell.ship === true)
               return (
                 <div
-                  className="shiphit"
+                  className="aishiphit"
                   key={key}
                   value={row}
                   onClick={() => {

@@ -11,7 +11,7 @@ const Messageboard = (props) => {
   const Winnermessage = () => {
     return (
       <div>
-        <h1>{props.winner.winner} LOL you will never beat me.</h1>
+        <h1> LOL you will never beat me.</h1>
         <button className="buttons" onClick={() => props.setgameover(true)}>
           Restart
         </button>

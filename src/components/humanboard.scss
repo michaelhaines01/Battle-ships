@@ -7,21 +7,41 @@
   .ship {
     @include grid-square;
     background-color: grey;
+    @include mobile {
+      width: 12px;
+      height: 12px;
+    }
   }
   .shiphit {
     @include grid-square;
     background-color: red;
+    @include mobile {
+      width: 15px;
+      height: 15px;
+    }
   }
   .openwater {
     @include grid-square;
-    background-color: blue;
+    background-color: #053fa1e1;
+    @include mobile {
+      width: 15px;
+      height: 15px;
+    }
   }
   .miss {
     @include grid-square;
-    background-color: blue;
+    background-color: #053fa1e1;
+    @include mobile {
+      width: 15px;
+      height: 15px;
+    }
   }
   .hit {
     @include grid-square;
-    background-color: blue;
+    background-color: #053fa1e1;
+    @include mobile {
+      width: 15px;
+      height: 15px;
+    }
   }
 }

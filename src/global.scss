@@ -1,9 +1,17 @@
+$width: 1337px;
+
+@mixin mobile {
+  @media (max-width:#{$width}) {
+    @content;
+  }
+}
+
 @mixin grid-square {
   position: relative;
   box-shadow: 0 0 9px #67ff9a;
   border: 1px solid #0ffd5e;
-  width: 25px;
-  height: 25px;
+  width: 32px;
+  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,7 +1,11 @@
+@import "../global.scss";
 .game-container {
   width: 100%;
   height: 70vh;
   overflow: hidden;
+  @include mobile {
+    height: 86vh;
+  }
   .twoboard-container {
     display: flex;
     flex-direction: row;
@@ -9,6 +13,12 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    @include mobile {
+      flex-direction: column;
+      justify-content: space-around;
+      height: 100%;
+    }
+
     .board-list {
       display: flex;
       flex-direction: column;
