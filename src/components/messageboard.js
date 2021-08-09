@@ -1,7 +1,7 @@
 import "./messageboard.scss";
 const Messageboard = (props) => {
   const Aimessage = () => {
-    return <h1>Ai turn</h1>;
+    return <h1>AI turn</h1>;
   };
 
   const Playermessage = () => {
