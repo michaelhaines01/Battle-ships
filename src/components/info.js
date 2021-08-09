@@ -14,11 +14,11 @@ const Infoboard = (props) => {
           <h4> Ship hit</h4>
         </div>
         <div className="sqaure-container">
-          <div className="openwater">X</div>
+          <div className="openwater"></div>
           <h4>Openwater</h4>
         </div>
         <div className="sqaure-container">
-          <div className="miss"></div>
+          <div className="miss">X</div>
           <h4>Miss</h4>
         </div>
         <div className="button-container">
