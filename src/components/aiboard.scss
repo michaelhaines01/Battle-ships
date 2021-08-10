@@ -24,7 +24,7 @@
   }
   .aimiss {
     @include grid-square;
-    background-color: blue;
+    background-color: #053fa1e1;
     @include mobile {
       width: 17px;
       height: 17px;

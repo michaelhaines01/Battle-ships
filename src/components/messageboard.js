@@ -5,7 +5,7 @@ const Messageboard = (props) => {
   };
 
   const Playermessage = () => {
-    return <h1>Player turn</h1>;
+    return <h1>Players turn</h1>;
   };
 
   const Winnermessage = () => {

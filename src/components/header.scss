@@ -1,9 +1,10 @@
 @import "../global.scss";
 
 .header {
-  padding: 20px;
+  display: flex;
+  padding-top: 20px;
   width: 100%;
-  height: 18vh;
+  height: 16vh;
   font-family: army;
   font-size: 400%;
   text-align: center;
@@ -11,6 +12,8 @@
   text-shadow: 1px, black;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  justify-content: space-around;
+  align-items: center;
   @include mobile {
     display: flex;
     font-size: 180%;
