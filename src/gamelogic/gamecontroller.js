@@ -32,12 +32,9 @@ const Gamecontroller = (props) => {
 
   const checkwinner = () => {
     if (props.ai.allshipssunk() === true) {
-      //this resets game
-      //props.setgameover(true);
       setwinner({ winner: "Player", gameover: true });
       return true;
     } else if (props.player.allshipssunk() === true) {
-      //props.setgameover(true);
       setwinner({ winner: "AI", gameover: true });
       return true;
     } else {
@@ -53,9 +50,7 @@ const Gamecontroller = (props) => {
       let updatedboard = props.ai.receiveattack(row, key, aiboard);
       setaiboard([...updatedboard.gameboard]);
       if (updatedboard.hit === true) {
-        //this returns true or false if ship is sunk
         if (props.ai.isshipsunk(theaiboard[row][key].display) === true) {
-          //update sunken state
           let index = playersunkships.findIndex((element) => {
             if (element.ship === theaiboard[row][key].display) {
               return true;

@@ -1,32 +1,21 @@
 import Gameboard from "../factories/gameboard.js";
 
-test("Test gameboard creation", () => {
-  let board = Gameboard();
+describe("Gameboard testing", () => {
+  let gameboard;
+  let x;
+  let y;
+  beforeEach(() => {
+    gameboard = Gameboard();
+  });
 
-  expect(board.board.length).toBe(10);
-});
+  test("Test gameboard creation", () => {
+    expect(gameboard.createboard().length).toBe(10);
+  });
 
-test("placeships", () => {
-  let board = Gameboard();
-  board.placeships();
-
-  expect(board.board[0][1].ship).toBe(true);
-});
-
-test("Gameboard receives attack", () => {
-  let board = Gameboard();
-  board.placeships();
-  board.receiveattack(0, 1), expect(board.board[0][1].ship).toBe(true);
-});
-
-test("test if ships sunk ", () => {
-  let board = Gameboard();
-  board.placeships();
-  board.receiveattack(0, 1);
-  board.receiveattack(0, 2);
-  board.receiveattack(0, 3);
-  board.receiveattack(0, 4);
-  board.receiveattack(0, 5);
-
-  expect(board.ships.carrier.shipsunk()).toBe(true);
+  test("Gameboard receives attack", () => {
+    x = 0;
+    y = 0;
+    let board = gameboard.createboard();
+    gameboard.receiveattack(x, y, board), expect(board[0][0].hit).toBe(true);
+  });
 });

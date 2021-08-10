@@ -43,7 +43,6 @@ const Gameboard = () => {
 
   let aiattack = (gameboard, lastshot, hit) => {
     let aishot = false;
-
     while (aishot === false) {
       if (
         gameboard[lastshot.x][lastshot.y].ship === true &&
@@ -54,7 +53,7 @@ const Gameboard = () => {
           ...gameboard[lastshot.x][lastshot.y],
           hit: true,
         };
-        console.log("7");
+
         lastshot = { x: lastshot.x, y: lastshot.y };
         hit = true;
         aishot = true;
@@ -69,7 +68,6 @@ const Gameboard = () => {
         gameboard[lastshot.x + 1][lastshot.y].ship === true &&
         gameboard[lastshot.x + 1][lastshot.y].hit !== true
       ) {
-        console.log("6");
         ships[gameboard[lastshot.x + 1][lastshot.y].display].hit("hi");
         gameboard[lastshot.x + 1][lastshot.y] = {
           ...gameboard[lastshot.x + 1][lastshot.y],
@@ -83,7 +81,6 @@ const Gameboard = () => {
         gameboard[lastshot.x - 1][lastshot.y].ship === true &&
         gameboard[lastshot.x - 1][lastshot.y].hit !== true
       ) {
-        console.log("5");
         ships[gameboard[lastshot.x - 1][lastshot.y].display].hit("hit");
         gameboard[lastshot.x - 1][lastshot.y] = {
           ...gameboard[lastshot.x - 1][lastshot.y],
@@ -96,7 +93,6 @@ const Gameboard = () => {
         gameboard[lastshot.x][lastshot.y + 1].ship === true &&
         gameboard[lastshot.x][lastshot.y + 1].hit !== true
       ) {
-        console.log("4");
         ships[gameboard[lastshot.x][lastshot.y + 1].display].hit("hit");
         gameboard[lastshot.x][lastshot.y + 1] = {
           ...gameboard[lastshot.x][lastshot.y + 1],
@@ -109,7 +105,6 @@ const Gameboard = () => {
         gameboard[lastshot.x][lastshot.y - 1].ship === true &&
         gameboard[lastshot.x][lastshot.y - 1].hit !== true
       ) {
-        console.log("3");
         ships[gameboard[lastshot.x][lastshot.y - 1].display].hit("hit");
         gameboard[lastshot.x][lastshot.y - 1] = {
           ...gameboard[lastshot.x][lastshot.y - 1],
@@ -119,11 +114,9 @@ const Gameboard = () => {
         hit = true;
         aishot = true;
       } else {
-        console.log("1");
         lastshot = { x: randomnumber(), y: randomnumber() };
       }
     }
-
     return { gameboard, lastshot, hit };
   };
 
