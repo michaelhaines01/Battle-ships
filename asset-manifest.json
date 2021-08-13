@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/Battle-ships/static/css/main.5e59efb6.chunk.css",
+    "main.js": "/Battle-ships/static/js/main.674e0adb.chunk.js",
+    "main.js.map": "/Battle-ships/static/js/main.674e0adb.chunk.js.map",
+    "runtime-main.js": "/Battle-ships/static/js/runtime-main.bca820c4.js",
+    "runtime-main.js.map": "/Battle-ships/static/js/runtime-main.bca820c4.js.map",
+    "static/js/2.f59b1ec6.chunk.js": "/Battle-ships/static/js/2.f59b1ec6.chunk.js",
+    "static/js/2.f59b1ec6.chunk.js.map": "/Battle-ships/static/js/2.f59b1ec6.chunk.js.map",
+    "index.html": "/Battle-ships/index.html",
+    "static/css/main.5e59efb6.chunk.css.map": "/Battle-ships/static/css/main.5e59efb6.chunk.css.map",
+    "static/js/2.f59b1ec6.chunk.js.LICENSE.txt": "/Battle-ships/static/js/2.f59b1ec6.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/Battle-ships/static/media/army.08efbbd2.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bca820c4.js",
+    "static/js/2.f59b1ec6.chunk.js",
+    "static/css/main.5e59efb6.chunk.css",
+    "static/js/main.674e0adb.chunk.js"
+  ]
+}
