@@ -4,13 +4,7 @@ describe("shiptesting", () => {
   let testcarrier;
 
   beforeEach(() => {
-    testcarrier = Ship("carrier", [
-      [0, 1],
-      [0, 2],
-      [0, 3],
-      [0, 4],
-      [0, 5],
-    ]);
+    testcarrier = Ship("carrier", 5);
   });
 
   test("check ship name", () => {

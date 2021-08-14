@@ -1,6 +1,6 @@
-const Ship = (name, cords) => {
+const Ship = (name, length) => {
   let shipname = name;
-  let shipcords = cords;
+
   let hitsarray = [];
 
   const hit = (shot) => {
@@ -10,12 +10,12 @@ const Ship = (name, cords) => {
   };
 
   const shipsunk = () => {
-    if (shipcords.length === hitsarray.length) {
+    if (length === hitsarray.length) {
       return true;
     }
     return false;
   };
 
-  return { shipname, hit, shipsunk, shipcords };
+  return { shipname, hit, shipsunk };
 };
 export default Ship;
