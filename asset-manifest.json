@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Battle-ships/static/css/main.5e59efb6.chunk.css",
-    "main.js": "/Battle-ships/static/js/main.674e0adb.chunk.js",
-    "main.js.map": "/Battle-ships/static/js/main.674e0adb.chunk.js.map",
+    "main.js": "/Battle-ships/static/js/main.f7841781.chunk.js",
+    "main.js.map": "/Battle-ships/static/js/main.f7841781.chunk.js.map",
     "runtime-main.js": "/Battle-ships/static/js/runtime-main.bca820c4.js",
     "runtime-main.js.map": "/Battle-ships/static/js/runtime-main.bca820c4.js.map",
     "static/js/2.f59b1ec6.chunk.js": "/Battle-ships/static/js/2.f59b1ec6.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.bca820c4.js",
     "static/js/2.f59b1ec6.chunk.js",
     "static/css/main.5e59efb6.chunk.css",
-    "static/js/main.674e0adb.chunk.js"
+    "static/js/main.f7841781.chunk.js"
   ]
 }
